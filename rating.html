@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+    <title>MegaMa</title>
+
+    <link data-meta="ssr" rel="shortcut icon" type="image/png" href="https://megamarket.ru/static/dist/images/favicon.54db98.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="16x16" href="https://megamarket.ru/static/dist/images/favicon-16x16.2289a6.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="32x32" href="https://megamarket.ru/static/dist/images/favicon-32x32.e2734e.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="96x96" href="https://megamarket.ru/static/dist/images/favicon-96x96.239d7b.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="128x128" href="https://megamarket.ru/static/dist/images/favicon-128x128.046cf1.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="196x196" href="https://megamarket.ru/static/dist/images/favicon-196x196.42ed6e.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=block" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/static_page.css">
+
+</head>
+
+
+    <div id="root" class="b_root" data-current="_id_ratingblock">
+
+        <div id="_id_curtain">
+            <div class="loader">
+                <span class="loader-text">Загрузка...</span>
+                <div class="loader-indicator"><span></span></div>
+            </div>
+        </div>
+
+        <div class="b_header" id="_id_header" >
+            <a href="./" class="b_header-item m_mmlogo">
+                <img src="./img/mm_logo.svg" alt="">
+            </a>
+            <a href="https://www.baby.ru/" class="b_header-item m_babyrulogo" target="_blank">
+                <img src="./img/babyru_logo.svg" alt="">
+            </a>
+
+            <div class="b_header-menubtn">
+                <span></span>
+            </div>
+
+            <div class="b_header-menu">
+
+                <div class="b_header-menu-wrapper">
+                    <a href="./game.html" data-dest="_id_game" class="b_header-menu-item">
+                        Начать игру
+                    </a>
+                    <a href="./gifts.html" data-dest="_id_gifts" class="b_header-menu-item">
+                        Что можно выиграть
+                    </a>
+                    <a href="./lifehacks.html" data-dest="_id_lifeHacks" class="b_header-menu-item">
+                        Гид по лайфхакам <span class="mbdn">от МегаМаркет</span>
+                    </a>
+                    <a href="./rating.html" data-dest="_id_ratingblock" class="b_header-menu-item">
+                        Турнирная таблица
+                    </a>
+
+                    <div class="b_header-menu-wrapper-bg"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="b_rating b_static_page " id="_id_ratingblock">
+
+            <div class="b_static_page-content">
+                <div class="title">
+                    Узнай, на каком<br/>ты месте!
+                </div>
+                <div class="subtitle">
+                    Следи за турнирной таблицей и ищи себя в списке лидеров!
+                </div>
+                <div class="b_rating-wrapper">
+                    <div class="b_rating-slider s_slider " id="_id_rating_root"></div>
+                </div>
+
+                <div class="b_rating-btns" id="_id_rating_control_btns">
+
+                    <div class="leftbtn cmnroundbtn s_leftbtn disable"></div>
+                    <div class="points s_points" id="_id_rating_points"></div>
+                    <div class="rightbtn cmnroundbtn s_rightbtn"></div>
+
+                </div>
+            </div>
+
+
+
+            <div class="star m_left_top"></div>
+            <div class="star m_left_bottom"></div>
+            <div class="star m_right_middle"></div>
+
+            <div class="b_rating-lefthand"></div>
+
+            <div class="b_rating-righthand"></div>
+
+        </div>
+
+
+
+        <div class="controller_l"></div>
+        <div class="controller_r"></div>
+
+        <div class="b_erid_info">
+            <div class="info">
+                Реклама ООО «МАРКЕТПЛЕЙС» (агрегатор) (ОГРН: 1167746803180), юридический адрес: 105082, г. Москва, ул. Спартаковская площадь, д. 16/15, стр. 6
+            </div>
+            <div class="erid">
+                ERID: 111111111111
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <script type="module">
+        import {rootControl} from './js/staticpage_control.js';
+        rootControl(root);
+    </script>
+
+
+</body>
+</html>

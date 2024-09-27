@@ -1,0 +1,3033 @@
+@import 'reset';
+@import 'fonts';
+@import 'vars';
+
+.dn {
+    display: none !important;
+}
+.mbdn {
+    @include screenW(pda){
+        display: none !important;
+    }
+}
+
+#root {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    // min-height: 700px;
+    min-height: 700rem;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+
+    @include screenW(pda){
+        min-height: 100vh;
+    }
+}
+
+#_id_curtain {
+    position: fixed;
+    z-index: 1000000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(17, 0, 46, .9);
+    opacity: 1;
+    transform: scale(1);
+    border-radius: 0;
+    transition: all .6s $commonEasing;
+    // filter: blur(50px);
+    backdrop-filter: blur(10px);
+
+    &.hide {
+        opacity: 0;
+        // border-radius: 50%;
+        transform: scale(0);
+    }
+
+    .loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // width: 300px;
+        // height: 200px;
+        width: 300rem;
+        height: 200rem;
+        margin: auto;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+
+        &-text {
+            // font: 400 24px/2 $pixelFont;
+            font: 400 24rem/2 $pixelFont;
+            color: $peach;
+        }
+
+        &-indicator {
+            position: relative;
+            width: 100%;
+            height: 30rem;
+            border: 1px solid $peach;
+
+            span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                // right: 0;
+                bottom: 0;
+                width: 20%;
+                background: $peach;
+            }
+        }
+    }
+
+}
+
+body {
+    position: relative;
+    background: $bgLight;
+    // padding-top: $headerHeight;
+
+
+    &:before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // background: url(../img/ornament_fill100.svg) no-repeat 50% 0;
+        // background-size: 100% auto;
+        background: url(../img/ornament_main_bg.png) no-repeat 50% 0;
+        background-size: 100% auto;
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            background: url(../img/ornament_main_bg@2x.png) no-repeat 50% 0;
+            background-size: 100% auto;
+        }
+
+        @include screenW(pda) {
+            background-size: auto 50vh;
+            @media (orientation: landscape){
+                background-size: 100% auto;
+            }
+        }
+
+    }
+
+    &:after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: scale(-1);
+        background: url(../img/ornament_main_bg.png) no-repeat 50% 0;
+        background-size: 100% auto;
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            background: url(../img/ornament_main_bg@2x.png) no-repeat 50% 0;
+            background-size: 100% auto;
+        }
+
+        @include screenW(pda) {
+            background-size: auto 50vh;
+            @media (orientation: landscape){
+                background-size: 100% auto;
+            }
+        }
+    }
+
+    // common ui
+    .cmnbtn {
+        position: relative;
+        top: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 308rem;
+        height: 77rem;
+        background: $blue;
+        font: 400 20rem/1 $pixelFont;
+        color: $peach;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 6rem 0 $darkBlue;
+        border-radius: 50rem;
+        transition: all 0.3s ease;
+
+        @include screenW(pda){
+            width: 204rem;
+            height: 52rem;
+            font-size: 13rem;
+        }
+
+        &:hover {
+            background: $darkBlue;
+        }
+
+        &:active {
+            background: $darkBlue;
+            top: 6rem;
+            box-shadow: 0 0px $blueShadow;
+        }
+    }
+
+    .cmnroundbtn {
+        position: relative;
+        top: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50rem;
+        height: 50rem;
+        background: $blue;
+        font: 400 20rem/1 $pixelFont;
+        color: $peach;
+        cursor: pointer;
+        box-shadow: 0 4rem 0 $darkBlue;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+
+        @include screenW(pda){
+            width: 40rem;
+            height: 40rem;
+            font-size: 14rem;
+        }
+
+        &:hover {
+            background: $darkBlue;
+        }
+
+        &:active {
+            background: $darkBlue;
+            top: 4rem;
+            box-shadow: 0 0rem $blueShadow;
+        }
+    }
+
+    .title {
+        font: 400 92rem/88rem $megaFont;
+        color: $blue;
+        margin-bottom: 20rem;
+
+        @include screenW(pda){
+            font: 400 30rem/1 $megaFont;
+            br {
+                display: inline;
+                margin-left: 5rem;
+            }
+        }
+
+    }
+
+    .subtitle {
+        font: 400 20rem/1.5 $megaFont;
+        color: $black;
+
+        @include screenW(pda){
+            font: 400 15rem/1.2 $megaFont;
+            br {
+                display: inline;
+                margin-left: 5rem;
+            }
+        }
+    }
+
+    .star {
+        position: absolute;
+        z-index: 1;
+        transition-property: all;
+        transition-duration: 0.6s;
+        transition-timing-function: $easeOutBack;
+        transition-delay: 0s;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            background: url(../img/static_pages/star_static.png) no-repeat 50% 50%;
+            background-size: contain;
+
+
+            @media (-webkit-min-device-pixel-ratio: 2) {
+                background: url(../img/static_pages/star_static_x2_optimizer.png) no-repeat 50% 50%;
+                background-size: contain;
+            }
+        }
+
+        &:before {
+            // content: "";
+            // position: absolute;
+            // top: 10px;
+            // left: 0;
+            // right: 0;
+            // bottom: 0;
+            // width: 38%;
+            // height: 38%;
+            // background: transparent;
+            // margin: auto;
+            // z-index: 10;
+            // box-shadow: -20px 20px 80px 2px $blueShadow;
+            // border-radius: 50%;
+        }
+    }
+
+    .b_root {
+
+        // design
+        .controller_l {
+            position: fixed;
+            z-index: 10;
+            bottom: 60rem;
+            left: 0;
+            width: 20%;
+            height: 50vh;
+            background: url(../img/controller_l.png) no-repeat 0 50%;
+            background-size: contain;
+            opacity: .1;
+
+            @include screenW(pda) {
+                display: none;
+            }
+        }
+
+        .controller_r {
+            position: fixed;
+            z-index: 10001;
+            top: 0;
+            right: 3%;
+            width: 20%;
+            height: 50vh;
+            background: url(../img/controller_r.png) no-repeat 100% 0%;
+            background-size: contain;
+            opacity: .1;
+
+            @include screenW(pda) {
+                display: none;
+            }
+        }
+
+
+    }
+}
+
+.b_header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $headerHeight;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: url(../img/ornament_main_bg.png) no-repeat 50% 0 $bgLight;
+    background-size: 100% auto;
+
+    @media (-webkit-min-device-pixel-ratio: 2) {
+        background: url(../img/ornament_main_bg@2x.png) no-repeat 50% 0 $bgLight;
+        background-size: 100% auto;
+    }
+    background-attachment: fixed;
+    padding: 0 30rem;
+
+    &-menubtn {
+        display: none;
+        @include screenW(pda){
+            position: absolute;
+            z-index: 100;
+            display: block;
+            top: 0;
+            right: 30px;
+            bottom: 0;
+            width: 30px;
+            height: 30px;
+            margin: auto;
+
+            span {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 3px;
+                margin: auto;
+                background: $red;
+                transition: all 0.2s ease;
+                &:before, &:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    width: 100%;
+                    height: 3px;
+                    opacity: 1;
+                    background: $red;
+                    transform: rotate(0deg);
+                    transition: all 0.2s ease;
+                }
+                &:before {
+                    top: -6px;
+                }
+                &:after {
+                    bottom: -6px;
+                }
+            }
+
+            &.open {
+                span {
+                    background: transparent;
+                    &:before {
+                        top: 0;
+                        transform: rotate(45deg);
+                    }
+                    &:after {
+                        bottom: 0;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+
+        }
+    }
+
+    &-item {
+        position: relative;
+        z-index: 100;
+        &.m_mmlogo {
+            width: 13%;
+
+            img {
+                display: block;
+                width: 100%;
+            }
+        }
+
+        &.m_babyrulogo {
+            width: 8.7%;
+
+            img {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    &-menu {
+        position: absolute;
+        top: calc(100% - 30rem);
+        left: 0;
+        right: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60rem;
+            padding: 12rem 14rem;
+            border-radius: 30rem;
+            overflow: hidden;
+            background-color: $bgLight;
+
+            &-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: url(../img/ornament_main_bg.png) no-repeat 50% 0;
+                background-size: 100% auto;
+                background-attachment: fixed;
+
+                @media (-webkit-min-device-pixel-ratio: 2) {
+                    background: url(../img/ornament_main_bg@2x.png) no-repeat 50% 0;
+                    background-size: 100% auto;
+                    background-attachment: fixed;
+                }
+
+                mix-blend-mode: normal;
+            }
+        }
+
+        &-item {
+            position: relative;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            height: 34rem;
+            background: $blue;
+            padding: 0 60rem;
+            border: 3rem solid $blue;
+            border-radius: 30rem;
+            margin: 0 2rem;
+            cursor: pointer;
+
+            font: 400 11rem/1 $pixelFont;
+            color: $peach;
+            text-transform: uppercase;
+
+            transition: all 0.5s ease;
+
+            .mbdn {
+                margin-left: 11rem;
+            }
+
+            &.active {
+                color: $blue;
+                background: transparent;
+                cursor: default;
+            }
+
+            &:hover:not(.active) {
+                background: $darkBlue;
+                border-color: $darkBlue;
+            }
+        }
+
+
+    }
+
+    // pda
+
+    @include screenW(pda) {
+        height: 60rem;
+        justify-content: flex-start;
+        padding: 0 20rem;
+        background: none;
+
+        @media screen and (orientation: landscape){
+            // background: url(../img/ornament_main_bg.png) no-repeat 50% 0 $bgLight;
+            // background-size: 100% auto;
+            // background-attachment: fixed;
+            background: transparent;
+            position: fixed;
+            height: 46rem;
+        }
+
+        &.game_theme {
+            .b_header {
+                &-item {
+                    display: none;
+                }
+            }
+        }
+
+        .b_header {
+
+            &-item {
+                &.m_mmlogo {
+                    position: relative;
+                    top: 1rem;
+                    width: auto;
+                    height: 12rem;
+
+                    img {
+                        display: block;
+                        width: auto;
+                        height: 100%;
+                    }
+                }
+
+                &.m_babyrulogo {
+                    position: relative;
+                    width: auto;
+                    height: 21rem;
+                    margin-left: 5rem;
+
+                    img {
+                        display: inline-block;
+                        width: auto;
+                        height: 100%;
+                        vertical-align: middle;
+                    }
+
+                    &:before {
+                        content: 'x';
+                        display: inline-block;
+                        font: 400 14rem / 1 "Press Start 2P", sans-serif;
+                        color: #2E2E2E;
+                        vertical-align: middle;
+                        margin-right: 5rem;
+                        transform: scale(0.7, 1);
+                        position: relative;
+                        top: -1rem;
+                        opacity: .7;
+                    }
+                }
+            }
+
+            &-menu {
+                position: fixed;
+                z-index: 10;
+                top: 0;
+                left: -100%;
+                display: flex;
+                width: 100%;
+                height: 100vh;
+                transition: all 0.3s ease;
+                background: url(../img/ornament_main_bg.png) no-repeat 50% 0 $bgLight;
+                background-size: auto 50vh;
+
+                @media (-webkit-min-device-pixel-ratio: 2) {
+                    background: url(../img/ornament_main_bg@2x.png) no-repeat 50% 0 $bgLight;
+                    background-size: auto 50vh;
+                }
+
+                @media (orientation: landscape){
+                    background-size: 100% auto;
+                }
+
+                &.open {
+                    left: 0;
+                }
+                &-wrapper {
+                    background: transparent;
+                    flex-flow: column;
+                    height: auto;
+                    width: 100%;
+                    padding: 0 20px;
+                    max-width: 400px;
+
+                }
+
+                &-wrapper-bg {
+                    display: none;
+                }
+
+                &-item {
+                    width: 100%;
+                    height: 40rem;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 0 10rem 0;
+                    padding: 0 20rem;
+                }
+            }
+        }
+
+    }
+}
+
+.b_erid_info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+
+    .info,
+    .erid {
+        display: flex;
+        align-items: center;
+        padding: 0 30rem;
+        height: 30rem;
+        background: $peach;
+        border-radius: 16px;
+        font: 400 14rem/1 $megaFont;
+        color: $blue;
+        margin: 0 5rem;
+
+        // @include screenW(1600px) {
+        //     height: 24px;
+        //     font: 400 10px/1 $megaFont;
+        // }
+
+    }
+
+    @include screenW(pda) {
+        display: block;
+        background: $blue;
+        border-radius: 10px;
+        padding: 5px 10px;
+        text-align: left;
+
+        @media (orientation: landscape){
+            padding: 5px 40px;
+        }
+
+        .info,
+        .erid {
+            display: inline;
+            margin: 0;
+            font: 400 10px/1.3 $megaFont;
+            color: $peach;
+            background: none;
+            padding: 0;
+            height: unset;
+        }
+
+        .erid {
+            margin-left: 5px;
+        }
+    }
+}
+
+.b_index {
+    position: absolute;
+    top: calc(0% + $fullHeaderHeight);
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+
+    @include screenW(pda){
+        flex-flow: column-reverse;
+        position: relative;
+        top: 0;
+        padding: 0 20rem 160rem;
+        // overflow: visible;
+
+        @media (orientation: landscape){
+            max-width: 600px;
+            margin: auto;
+            padding-top: 100px;
+            justify-content: start;
+            align-items: start;
+        }
+
+    }
+
+    &.show {
+
+        .b_index {
+            &-lady {
+                .megama {
+                    transform: translateX(0) scale(1);
+                }
+
+                .prize {
+                    transform: translateY(0) scale(1);
+                    opacity: 1;
+
+                    &.m_2 {
+                        transform: translateY(0) scale(1) rotate(-18deg);
+                    }
+                    &.m_3 {
+                        transform: translateY(0) scale(1) rotate(-18deg);
+                    }
+                }
+            }
+
+            &-intro {
+
+                &-textblock,
+                .btn_wrapper {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+
+                &-handPlug {
+                    opacity: 1;
+                    transform: translate(0, 0) rotate(0deg);
+
+                    transform-origin: 100% 100%;
+                    // animation: waveHand 1.5s $easeOutBack 2 alternate 5s;
+
+                    // @keyframes waveHand {
+                    //     0% {
+                    //         transform: translate(0, 0) rotate(0deg);
+                    //     }
+
+                    //     100% {
+                    //         transform: translate(100px, 100px) rotate(15deg);
+                    //     }
+                    // }
+                }
+
+            }
+        }
+
+        .star {
+            // transform: scale(1);
+            opacity: 1;
+
+            &.m_main {
+                transform: scale(1, 1) rotate(0deg);
+            }
+
+            &.m_right_top {
+                transform: scale(-1, 1) rotate(-10deg);
+            }
+
+            &.m_left {
+                transform: scale(1, 1) rotate(-8deg);
+
+                @include screenW(pda){
+                    transform: scale(1, 1) rotate(6deg);
+                }
+            }
+
+            &.m_right_middle {
+                transform: scale(-1, 1) rotate(-10deg);
+            }
+
+        }
+
+    }
+
+    .star {
+        transform: scale(0.5, 0.5) rotate(0deg);
+        opacity: 0;
+        transition-property: all;
+        transition-duration: 0.6s;
+        transition-timing-function: $easeOutBack;
+        transition-delay: 0;
+
+        &.m_main {
+            top: 0;
+            left: 5%;
+            right: 0;
+            bottom: 0;
+            width: 70%;
+            margin: auto;
+            // padding-top: 70%;
+            transition-delay: 0.8s;
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: 10rem;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: transparent;
+                margin: auto;
+                z-index: 10;
+                border-radius: 50%;
+                height: 12%;
+                opacity: 0.7;
+                width: 70%;
+                box-shadow: -20rem 350rem 300rem #531a9d;
+            }
+            @include screenW(pda){
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 90%;
+                margin: auto;
+                transform: scale(1, 1) rotate(0deg) translate(0, 16rem);
+                &:before {
+                    height: 20%;
+                    opacity: 0.6;
+                    width: 80%;
+                    box-shadow: 0rem 150rem 50rem #531a9d;
+                }
+            }
+        }
+
+        &.m_left {
+            left: 3%;
+            bottom: 39%;
+            width: 21%;
+            padding-top: 21%;
+            transition-delay: 1.1s;
+
+            @include screenW(pda) {
+                left: 0;
+                bottom: 35%;
+                width: 12%;
+                padding-top: 12%;
+            }
+        }
+
+        &.m_right_top {
+            top: 5%;
+            right: 21%;
+            width: 9.5%;
+            padding-top: 9.5%;
+            // transform: scale(-1, 1) rotate(340deg);
+            transition-delay: 0.9s;
+
+            @include screenW(pda){
+                display: none;
+            }
+        }
+
+        &.m_right {
+            bottom: 90px;
+            right: 1%;
+            width: 34%;
+            padding-top: 34%;
+            transition-delay: 0.7s;
+            @include screenW(pda){
+                bottom: 60rem;
+                right: -14%;
+                width: 44%;
+                padding-top: 44%;
+                transition-delay: 0.7s;
+                transform: scale(-0.5, 0.5) rotate(-10deg);
+            }
+        }
+
+        &.m_right_middle {
+            top: 25%;
+            right: 8%;
+            width: 20%;
+            padding-top: 20%;
+            transition-delay: 0.8s;
+            @include screenW(pda){
+                display: none;
+            }
+
+        }
+    }
+
+    &-lady {
+        position: relative;
+        z-index: 1;
+        width: 45%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-right: 1%;
+
+        @include screenW(pda){
+            width: 100%;
+            height: auto;
+            padding-top: 30rem;
+        }
+
+        .megama {
+            position: relative;
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            max-height: 840rem;
+
+            background: url(../img/static_pages/Hero.png) no-repeat 50% 50%;
+            background-size: auto 100%;
+
+            @media (-webkit-min-device-pixel-ratio: 2) {
+                background: url(../img/static_pages/Hero_x2.png) no-repeat 50% 50%;
+                // background: url(../img/static_pages/Hero_x2.png) no-repeat 50% 50%;
+                background-size: auto 100%;
+            }
+
+            transform: translateX(-100%) scale(.2);
+            transition: all 0.8s $easeOutBack;
+
+            @include screenW(pda){
+                width: 80%;
+                height: auto;
+                padding-top: 100%;
+            }
+
+        }
+
+        .prize {
+            position: absolute;
+            z-index: 200;
+
+            opacity: 0;
+            transition-property: all;
+            transition-duration: 0.8s;
+            transition-timing-function: $easeOutBack;
+            transition-delay: 0s;
+
+            &.m_1 {
+                top: 5%;
+                left: -6%;
+                width: 32%;
+                padding-top: 32%;
+                background: url(../img/static_pages/prize3_f.png) no-repeat 50% 0%;
+                background-size: 100%;
+
+                @media (-webkit-min-device-pixel-ratio: 2) {
+                    background: url(../img/static_pages/prize3_f_x2.png) no-repeat 50% 0%;
+                    background-size: 100%;
+                }
+
+                transition-delay: 0.8s;
+                transform: translateY(-100%) scale(0.5);
+
+                @include screenW(pda){
+                    top: 20px;
+                    left: -5%;
+                    width: 40%;
+                    padding-top: 40%;
+                }
+            }
+
+            &.m_2 {
+                top: 6%;
+                right: -3%;
+                width: 41.5%;
+                padding-top: 41.5%;
+                background: url(../img/static_pages/prize1_f.png) no-repeat 50% 50%;
+                background-size: 100%;
+
+                @media (-webkit-min-device-pixel-ratio: 2) {
+                    background: url(../img/static_pages/prize1_f_x2.png) no-repeat 50% 0%;
+                    background-size: 100%;
+                }
+
+                transition-delay: 1.1s;
+                transform: translateY(-100%) scale(0.5) rotate(-10deg);
+
+                @include screenW(pda){
+                    top: 0;
+                    right: -10%;
+                    width: 50%;
+                    padding-top: 50%;
+                    transform: translateY(0) scale(1) rotate(-8deg);
+                }
+            }
+
+            &.m_3 {
+                bottom: -7%;
+                left: -12%;
+                width: 49%;
+                padding-top: 62%;
+
+                background: url(../img/static_pages/prize2_f.png) no-repeat 50% 0%;
+                background-size: auto 100%;
+
+                @media (-webkit-min-device-pixel-ratio: 2) {
+                    background: url(../img/static_pages/prize2_f_x2.png) no-repeat 50% 0%;
+                    background-size: 100%;
+                }
+
+                transition-delay: 1s;
+                transform: translateY(100%) scale(0.5) rotate(-18deg);
+
+                @include screenW(pda){
+                    background: url(../img/static_pages/prize2_f_x2.png) no-repeat 0% 0%;
+                    background-size: contain;
+                    width: 62%;
+                    padding-top: 62%;
+                    transform: translateY(100%) scale(0.5) rotate(-15deg);
+                    bottom: 5%;
+                    left: -14%;
+                }
+            }
+        }
+
+    }
+
+    &-intro {
+        position: relative;
+        z-index: 10;
+        width: 45%;
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%;
+
+        @include screenW(pda){
+            width: 100%;
+        }
+
+        .title {
+            margin-bottom: 10rem;
+        }
+
+        &-textblock {
+            position: relative;
+            z-index: 10;
+            display: none;
+            top: -80rem;
+            opacity: 0;
+            // transform: translateX(100%);
+            transform: scale(.2);
+            transition-property: all;
+            transition-duration: 1s;
+            transition-timing-function: $easeOutBack;
+            transition-delay: .3s;
+
+            &.show {
+                display: block;
+            }
+
+            // @media screen and (max-height: 1080px) {
+            //     top: -80rem;
+            // }
+
+            @include screenW(pda){
+                top: 0;
+            }
+
+
+            .form {
+                position: relative;
+                display: flex;
+                flex-flow: column;
+                width: 100%;
+                padding-top: 20rem;
+
+                &-row {
+                    display: inline-flex;
+                    flex-flow: row;
+                    width: 100%;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    margin-bottom: 10rem;
+
+                    @include screenW(pda){
+                        flex-flow: column;
+                        margin-bottom: 0;
+                    }
+                }
+
+                &-input {
+                    position: relative;
+                    width: 49%;
+                    height: 50rem;
+                    border-radius: 30rem;
+                    border: 3rem solid $blue;
+                    margin: 0 0 0 1%;
+                    transition: all 0.7s ease;
+                    box-shadow: inset 0 0 0 rgba(255, 0, 0, 0);
+
+                    @include screenW(pda){
+                        width: 100%;
+                        margin-bottom: 10rem;
+                        margin-left: 0;
+                        height: 34rem;
+                        border-radius: 6px;
+                        border: 2px solid $blue;
+                    }
+
+                    &:first-child {
+                        margin-left: 0;
+                    }
+
+                    &.alarm {
+                        border: 3rem solid #f00;
+                        box-shadow: inset 0 0 20rem rgba(255, 0, 0, .7);
+                    }
+
+                    input {
+                        position: absolute;
+                        z-index: 100;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        padding: 0 20rem;
+                        font: 400 18rem/1 $megaFont;
+                        color: $black;
+                        display: flex;
+                        align-items: center;
+                        @include screenW(pda){
+                            font-size: 13rem;
+                        }
+                    }
+
+                    label {
+                        position: absolute;
+                        left: 20rem;
+                        top: 0;
+                        height: 46rem;
+                        font: 400 18rem/1 $megaFont;
+                        color: #8F8F8F;
+                        display: flex;
+                        align-items: center;
+                        opacity: 1;
+                        transition: all 0.5s ease;
+
+                        @include screenW(pda){
+                            height: 30rem;
+                            font-size: 13rem;
+                        }
+                    }
+
+                    input:focus+label,
+                    input.checked+label {
+                        top: -50rem;
+                        opacity: 0;
+                        @include screenW(pda){
+                            top: -34rem;
+                        }
+                    }
+
+                }
+            }
+
+            .btn_wrapper {
+                padding-top: 20rem;
+                display: flex;
+                flex-flow: row;
+                align-items: flex-start;
+
+                // opacity: 0;
+                // transform: translateX(100%);
+                // transition-property: all;
+                // transition-duration: 0.8s;
+                // transition-timing-function: $easeOutBack;
+                // transition-delay: 1.1s;
+
+                .goBtn {
+                    // @include screenW(1600px) {
+                    //     width: 240px;
+                    //     height: 72px;
+                    //     font-size: 16px;
+                    // }
+
+                    // @media screen and (max-height: 800px) {
+                    //     height: 50px;
+                    // }
+                    // @include screenW(pda){
+                    //     height: 50px;
+                    //     font-size: 13px;
+                    //     width: 200px;
+                    // }
+                }
+
+                .infoBtn {
+                    display: flex;
+                    flex-flow: column;
+                    margin-left: 5rem;
+                    align-items: center;
+                    width: 50rem;
+                    cursor: pointer;
+
+                    .cmnroundbtn {
+                        width: 40rem;
+                        height: 40rem;
+                        margin-bottom: 8rem;
+                        padding-top: 4rem;
+                        padding-left: 2rem;
+                    }
+
+                    .text {
+                        font: 400 10rem/1 $megaFont;
+                        color: $blue;
+                        text-align: center;
+                        text-decoration: underline;
+                    }
+
+                }
+
+            }
+        }
+
+        &-handPlug {
+            position: absolute;
+            z-index: 10;
+            bottom: 0;
+            left: 10%;
+            width: 70%;
+
+            display: flex;
+            align-items: flex-start;
+
+            transform-origin: 100% 100%;
+            opacity: 0;
+            transform: translate(200rem, 200rem) rotate(15deg);
+            transition-property: all;
+            transition-duration: 0.8s;
+            transition-timing-function: $easeOutBack;
+            transition-delay: 1.1s;
+
+            .label {
+                position: absolute;
+                // position: relative;
+                bottom: 110rem;
+                left: 100rem;
+                width: 330rem;
+                background: #C3F598;
+                border-radius: 20rem;
+                padding: 20rem 26rem;
+                font: 500 20rem / 1.5 "MegaSans", sans-serif;
+                color: #8654CC;
+                transform: scale(1) rotate(4deg);
+                box-shadow: 10rem 40rem 90rem rgba(83, 26, 157, 0.3);
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: -30rem;
+                    left: 77%;
+                    width: 450rem;
+                    height: 450rem;
+                    background: url(../img/static_pages/hand_1.png) no-repeat 0 0;
+                    background-size: 100%;
+                    transform: rotate(-5deg);
+                }
+
+            }
+
+            @include screenW(pda){
+                position: fixed;
+                left: 0;
+                width: 100%;
+
+                .label {
+                    left: 10rem;
+                    bottom: 45rem;
+                    width: 80%;
+                    transform: scale(1) rotate(0deg);
+                    padding: 10rem 10rem 10rem;
+                    font: 500 12rem/1 $megaFont;
+                    border-radius: 12rem;
+
+                    &:after {
+                        left: 85%;
+                        width: 200rem;
+                        height: 250rem;
+                    }
+
+                }
+            }
+        }
+
+    }
+}
+
+.b_static_page {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100% - $headerHeight);
+
+    @include screenH(700px) {
+        height: auto;
+        min-height: 600px;
+    }
+
+    @include screenW(pda) {
+        justify-content: start;
+        flex-flow: column;
+        padding: 0 20rem 0;
+        // align-items: flex-start;
+        // justify-content: flex-start;
+        @media (orientation: landscape){
+            max-width: 600px;
+            margin: auto;
+            padding-top: 100px;
+            justify-content: start;
+            align-items: start;
+        }
+
+    }
+
+
+    .title,
+    .subtitle {
+        text-align: center;
+
+        @include screenW(pda) {
+            text-align: left;
+        }
+    }
+
+    .title {
+        font: 400 70rem/1 $megaFont;
+
+        @include screenW(pda) {
+            font-size: 40rem;
+            margin-bottom: 10rem;
+        }
+    }
+
+    .subtitle {
+        @include screenW(pda) {
+            font-size: 15rem;
+            line-height: 20rem;
+        }
+    }
+
+    &-content {
+        position: relative;
+        z-index: 50;
+        max-width: 710px;
+        width: 50vw;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        // overflow: hidden;
+        margin: auto;
+        padding-bottom: $headerHeight;
+
+        @include screenW(pda) {
+            max-width: unset;
+            width: 100%;
+            padding: 0 20px;
+            align-items: stretch;
+            margin: 0;
+        }
+    }
+
+    .fingerhand {
+        position: fixed;
+        z-index: 20;
+        width: 22%;
+        padding-top: 22%;
+        background: url(../img/static_pages/finger_hand_shadow.png) no-repeat 0 50%;
+        background-size: 100% auto;
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            background: url(../img/static_pages/finger_hand_shadow_x2.png) no-repeat 50% 50%;
+            background-size: 100% auto;
+        }
+
+        &.m_left {
+            top: 24%;
+            left: 0;
+        }
+
+        @include screenW(pda) {
+            display: none;
+        }
+    }
+
+    .openhand1 {
+        position: fixed;
+        z-index: 20;
+        width: 22%;
+        padding-top: 22%;
+        background: url(../img/static_pages/open_hand1_shadow.png) no-repeat 0 50%;
+        background-size: 100% auto;
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            background: url(../img/static_pages/open_hand1_shadow_x2.png) no-repeat 50% 50%;
+            background-size: 100% auto;
+        }
+
+        &.m_right {
+            top: 50%;
+            right: 0;
+        }
+
+        &.m_left {
+            top: 50%;
+            left: 0;
+            transform: scale(-1, 1);
+        }
+
+        @include screenW(pda) {
+            display: none;
+        }
+    }
+}
+
+.b_rating {
+
+    // max-height: calc(100vh - $headerHeight);
+    overflow: hidden;
+
+    @include screenW(pda) {
+        max-height: unset;
+        overflow: visible;
+        padding: 0 0 40rem;
+        @media (orientation: landscape){
+            max-width: 600px;
+            margin: auto;
+            padding-top: 100px;
+            justify-content: start;
+            align-items: start;
+        }
+    }
+
+    &.show {
+        .b_static_page-content {
+            top: 0;
+            opacity: 1;
+        }
+
+        .b_rating-wrapper,
+        .b_rating-btns {
+            transform: scale(1);
+            opacity: 1;
+            top: 0;
+        }
+
+        .star {
+            &.m_left_top {
+                transform: scale(1, 1) rotate(-10deg);
+                left: 21%;
+                top: 10%;
+                opacity: 1;
+            }
+
+            &.m_right_middle {
+                transform: scale(-1, 1) rotate(20deg);
+                right: 16.5%;
+                bottom: 51%;
+                opacity: 1;
+            }
+
+            &.m_left_bottom {
+                left: 21%;
+                bottom: 28%;
+                transform: scale(1, 1) rotate(-15deg);
+                opacity: 1;
+            }
+        }
+
+        .b_rating-righthand {
+            transform: translateX(0) rotate(0deg);
+        }
+
+        .b_rating-lefthand {
+            transform: translateX(0) rotate(0deg);
+        }
+    }
+
+    .b_static_page-content {
+        max-width: unset;
+        width: 100%;
+        padding-bottom: 0;
+        top: -100rem;
+        opacity: 0;
+        transition: all 0.6s $easeOutBack;
+
+    }
+
+    &-wrapper {
+        position: relative;
+        z-index: 50;
+        position: relative;
+        top: 100rem;
+        width: 100%;
+        overflow: hidden;
+
+        transform: scale(0.5);
+        opacity: 0;
+        transition: all 0.6s $easeOutBack 0.6s;
+    }
+
+    &-slider {
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+        padding-top: 20rem;
+        width: 100%;
+        overflow: hidden;
+
+        .item {
+            position: relative;
+            width: 100%;
+
+            display: inline-flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: flex-start;
+            flex-shrink: 0;
+
+            &-wrapper {
+                width: 50vw;
+                max-width: 710rem;
+
+                display: inline-flex;
+                flex-flow: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                flex-shrink: 0;
+
+                @include screenW(pda){
+                    width: 100%;
+                }
+            }
+
+            &-row {
+                display: inline-flex;
+                flex-flow: row nowrap;
+                margin-top: 15rem;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                &.m_place1 {
+                    .item {
+                        &-user {
+                            background: $green;
+                        }
+
+                        &-score:before {
+                            background: url(../img/static_pages/cup_x2.png) no-repeat 50% 50%;
+                            background-size: 100%;
+                        }
+                    }
+                }
+
+                &.m_place2 {
+                    .item {
+                        &-user {
+                            background: $peach;
+                        }
+
+                        &-score:before {
+                            background: url(../img/static_pages/crown_x2.png) no-repeat 50% 50%;
+                            background-size: 100%;
+                        }
+                    }
+                }
+
+                &.m_place3 {
+                    .item {
+                        &-user {
+                            background: $pink;
+                        }
+
+                        &-score:before {
+                            background: url(../img/static_pages/ribbon_x2.png) no-repeat 50% 50%;
+                            background-size: 100%;
+                        }
+                    }
+                }
+            }
+
+
+            &-pos {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 62rem;
+                height: 62rem;
+                border-radius: 50%;
+                border: 3px solid $blue;
+                font: 400 26rem/1 $megaFont;
+                color: black;
+                margin-right: 14rem;
+                flex-shrink: 0;
+
+                @include screenW(pda){
+                    width: 50rem;
+                    height: 50rem;
+                    border: 2px solid $blue;
+                    font-size: 20rem;
+                    margin-right: 10rem;
+                }
+            }
+
+            &-user {
+                display: inline-flex;
+                flex-flow: row;
+                align-items: center;
+                justify-content: space-between;
+                width: calc(100% - 62rem - 14rem);
+                height: 62rem;
+                border-radius: 32rem;
+                background: #fff;
+                padding: 10rem 30rem 10rem 10rem;
+
+                @include screenW(pda){
+                    width: calc(100% - 52rem - 10rem);
+                    height: 52rem;
+                    font-size: 22rem;
+                }
+            }
+
+            &-person {
+                display: inline-flex;
+                flex-flow: row;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            &-avatar {
+                position: relative;
+                width: 42rem;
+                height: 42rem;
+                border-radius: 50%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+
+                // by default
+                background-color: $lightBlue;
+                background-image: url(../img/static_pages/avatar_nophoto_star.svg);
+                background-size: auto 20px;
+
+                @include screenW(pda){
+                    width: 32rem;
+                    height: 32rem;
+                    flex-shrink: 0;
+                }
+            }
+
+            &-name {
+                font: 400 16rem/1.2 $megaFont;
+                color: $black;
+                margin-left: 10rem;
+
+                span {
+                    color: $grey;
+                    display: inline-block;
+                }
+                @include screenW(pda){
+                    font-size: 12rem;
+                }
+            }
+
+            &-score {
+                position: relative;
+                font: 400 16rem/1.2 $megaFont;
+                color: $black;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: calc(100% + 20rem);
+                    width: 42rem;
+                    height: 42rem;
+                    margin: auto;
+
+                    @include screenW(pda){
+                        width: 30rem;
+                        height: 30rem;
+                        right: 100%;
+                    }
+                }
+                @include screenW(pda){
+                    font-size: 12rem;
+                    margin-left: 40rem;
+                }
+            }
+        }
+    }
+
+    &-btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row;
+        padding: 20rem 0;
+        position: relative;
+
+        transform: scale(0.5);
+        top: 100px;
+        opacity: 0;
+        transition: all 0.6s $easeOutBack 0.6s;
+
+        .cmnroundbtn {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 20rem;
+                height: 20rem;
+                margin: auto;
+                background: url(../img/arrow.svg) no-repeat 50% 50%;
+                background-size: 20rem;
+            }
+
+            &.disable {
+                opacity: .7;
+                cursor: default;
+            }
+        }
+
+        .leftbtn:before {
+            transform: rotate(-90deg)
+        }
+
+        .rightbtn:before {
+            transform: rotate(90deg)
+        }
+
+        .points {
+            position: relative;
+            display: inline-flex;
+            margin: 0 20rem;
+
+            &-item {
+                position: relative;
+                display: inline-flex;
+                flex-shrink: 0;
+                width: 16rem;
+                height: 16rem;
+                background: transparent;
+                border-radius: 50%;
+                cursor: pointer;
+                // transition: all 0.3s ease;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    width: 8rem;
+                    height: 8rem;
+                    background: $blue;
+                    border-radius: 50%;
+                    // transition: all 0.3s ease;
+                }
+
+                &.active,
+                &:hover {
+                    background: $blue;
+
+                    &:before {
+                        background: $peach;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .star {
+        z-index: 50;
+
+        @include screenW(pda){
+            display: none;
+        }
+
+        &.m_left_top {
+            left: 10%;
+            top: 15%;
+            width: 8%;
+            padding-top: 8%;
+            opacity: 0;
+            transform: scale(0.5, 0.5) rotate(-20deg);
+            transition-delay: 1s;
+        }
+
+        &.m_right_middle {
+            bottom: 40%;
+            right: 8%;
+            width: 7%;
+            padding-top: 7%;
+            opacity: 0;
+            transform: scale(-0.5, 0.5) rotate(10deg);
+            transition-delay: 1.3s;
+        }
+
+        &.m_left_bottom {
+            bottom: 15%;
+            left: 12%;
+            width: 4%;
+            padding-top: 4%;
+            opacity: 0;
+            transform: scale(0.5, 0.5) rotate(-10deg);
+            transition-delay: 1.6s;
+        }
+    }
+
+    &-lefthand {
+        position: absolute;
+        top: 14%;
+        left: -1%;
+        z-index: 50;
+        width: 24%;
+        padding-top: 24%;
+
+        background: url(../img/static_pages/rating-lefthand_and_prize.png) no-repeat 0 50%;
+        background-size: contain;
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            background: url(../img/static_pages/rating-lefthand_and_prize_x2.png) no-repeat 0 50%;
+            background-size: contain;
+        }
+
+        transform-origin: 0 0;
+        transform: translateX(-120%) rotate(-25deg);
+        transition: all 1.2s ease 2.2s;
+
+        @include screenW(pda){
+            display: none;
+        }
+
+    }
+
+    &-righthand {
+        position: absolute;
+        z-index: 50;
+        width: 24%;
+        padding-top: 24%;
+        bottom: 0;
+        right: 0;
+
+        background: url(../img/static_pages/rating-righthand_and_prize.png) no-repeat 100% 100%;
+        background-size: contain;
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            background: url(../img/static_pages/rating-righthand_and_prize_x2.png) no-repeat 100% 100%;
+            background-size: contain;
+        }
+
+        // opacity: 0;
+        transform-origin: 100% 100%;
+        transform: translateX(100%) rotate(25deg);
+        transition: all 1.2s ease 1.8s;
+
+        @include screenW(pda){
+            display: none;
+        }
+
+    }
+
+}
+
+.b_gifts {
+    max-height: calc(100vh - $headerHeight);
+    overflow: hidden;
+
+    @include screenW(pda) {
+        max-height: unset;
+        overflow: visible;
+        padding: 0 0 40rem;
+        @media (orientation: landscape){
+            max-width: 600px;
+            margin: auto;
+            padding-top: 100px;
+            justify-content: start;
+            align-items: start;
+        }
+    }
+
+    &.show {
+        .b_static_page-content {
+            top: 0;
+            opacity: 1;
+        }
+
+        .b_gifts-gallery {
+            transform: scale(1);
+            opacity: 1;
+            top: 0;
+        }
+
+        .star {
+            &.m_left_top {
+                top: 60rem;
+                left: 19%;
+                transform: scale(1, 1) rotate(-10deg);
+                opacity: 1;
+            }
+
+            &.m_right_middle {
+                opacity: 1;
+                transform: scale(-1, 1) rotate(-3deg);
+                bottom: 17%;
+                right: 20%;
+            }
+
+            &.m_left_bottom {
+                bottom: 26%;
+                left: 20%;
+                transform: scale(1, 1) rotate(-10deg);
+                opacity: 1;
+            }
+        }
+
+        .openhand1.m_right {
+            transform: translateX(0) rotate(0deg);
+        }
+
+        .fingerhand.m_left {
+            transform: translateX(0);
+        }
+    }
+
+    .b_static_page-content {
+        top: -100rem;
+        opacity: 0;
+        padding-bottom: 40rem;
+        transition: all 0.6s $easeOutBack;
+
+        @include screenW(pda) {
+            padding: 0 20rem 20rem;
+        }
+
+    }
+
+    .title,
+    .subtitle {
+        max-width: 640rem;
+    }
+
+    .openhand1 {
+        &.m_right {
+
+            transform: translateX(100%) rotate(-20deg);
+            transform-origin: 100% 0;
+            transition: all 1.2s ease 1.8s;
+
+            background: url(../img/static_pages/open_hand1_shadow_x2.png) no-repeat 50% 100%;
+            background-size: 100% auto;
+            width: 27%;
+            padding-top: 27%;
+            bottom: 0;
+        }
+    }
+
+    .fingerhand {
+        &.m_left {
+            top: 24%;
+            transform: translateX(-100%) rotate(-00deg);
+            transform-origin: 0 0;
+            transition: all 1.2s ease 2.2s;
+        }
+    }
+
+    .star {
+
+        @include screenW(pda){
+            display: none;
+        }
+
+        z-index: 50;
+
+        &.m_left_top {
+            top: 10rem;
+            left: 9%;
+            width: 11%;
+            padding-top: 11%;
+            opacity: 0;
+            transform: scale(0.5, 0.5) rotate(-10deg);
+            transition-delay: 1s;
+        }
+
+        &.m_right_middle {
+            bottom: 10%;
+            right: 5%;
+            width: 9%;
+            padding-top: 9%;
+            opacity: 0;
+            transform: scale(-0.5, 0.5) rotate(10deg);
+            transition-delay: 1.3s;
+        }
+
+        &.m_left_bottom {
+            bottom: 10%;
+            left: 5%;
+            width: 4.5%;
+            padding-top: 4.5%;
+            opacity: 0;
+            transform: scale(0.5, 0.5) rotate(-10deg);
+            transition-delay: 1.6s;
+        }
+    }
+
+    &-gallery {
+
+        position: relative;
+        top: 100rem;
+        z-index: 100;
+        width: 100%;
+        transform: scale(0.5);
+        opacity: 0;
+
+        transition: all 0.6s $easeOutBack 0.6s;
+
+        &-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            @include screenW(pda){
+                overflow: visible;
+            }
+        }
+
+        &-slider {
+            position: relative;
+            display: flex;
+            flex-flow: row nowrap;
+            height: 500rem;
+            width: 100%;
+            overflow: hidden;
+
+            @include screenW(pda) {
+                height: auto;
+                flex-flow: column;
+                padding: 0 0 60rem 0;
+                overflow: visible;
+            }
+
+
+            .item {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                flex-shrink: 0;
+
+                &:hover {
+                    .item-image {
+                        transform: scale(1.05);
+                    }
+                }
+
+                @include screenW(pda){
+                    padding: 0 20px;
+                    // overflow: hidden;
+                    overflow-y: visible;
+                    overflow-x: clip;
+                }
+
+                &-wrapper {
+                    position: relative;
+                    z-index: 1000;
+                    width: 560rem;
+                    height: 100%;
+                    // border: 1px solid red;
+
+                    @include screenW(pda) {
+                        width: 100%;
+                        display: inline-flex;
+                        flex-flow: column;
+                        align-items: center;
+                    }
+
+                    .star {
+                        display: none;
+                        @include screenW(pda){
+                            display: block;
+                        }
+                    }
+                }
+
+                &-place {
+                    position: absolute;
+                    z-index: 10;
+                    top: 10rem;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0 20rem;
+                    height: 48rem;
+                    width: 230rem;
+                    background: $green;
+                    border-radius: 20rem;
+                    font: 500 40rem/1 $megaFont;
+                    color: $blue;
+                    text-transform: uppercase;
+
+                    @include screenW(pda) {
+                        position: relative;
+                        width: auto;
+                    }
+                }
+
+                &-label {
+                    position: absolute;
+                    z-index: 10;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    display: flex;
+                    flex-flow: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 370rem;
+                    text-transform: uppercase;
+
+                    &-title {
+                        font: 400 34rem/1 $pixelFont;
+                        color: $blue;
+                        margin: 5rem 0;
+
+                        @include screenW(pda){
+                            font-size: 20rem;
+
+                        }
+                    }
+
+                    &-subtitle {
+                        font: 400 14rem/1 $pixelFont;
+                        color: $blue;
+                        margin: 5rem 0;
+                        @include screenW(pda){
+                            font-size: 10rem;
+                        }
+                    }
+
+                    @include screenW(pda) {
+                        position: relative;
+                        width: auto;
+                    }
+                }
+
+                &-image {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    transform: scale(1);
+                    transition: all 1s $commonEasing;
+
+                    @include screenW(pda) {
+                        position: relative;
+                        width: 100%;
+                        padding-top: 100%;
+                    }
+                }
+
+                &.m_1 {
+                    @include screenW(pda){
+                        margin-bottom: -70rem;
+                    }
+                    .item {
+                        &-place {
+                            @include screenW(pda) {
+                                top: 0;
+                                align-self: end;
+                                margin: 0 20rem 0;
+                                width: auto;
+                                max-height: 48px;
+                                line-height: 0.8;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                font-size: 38rem;
+                                padding-top: 3rem;
+                            }
+
+                        }
+
+                        &-wrapper {
+                            background: url(../img/static_pages/cup_x2.png) no-repeat -3% 14%;
+                            background-size: 32% auto;
+
+                            @include screenW(pda) {
+                                position: relative;
+                                background: transparent;
+                                &:before {
+                                    content: "";
+                                    position: absolute;
+                                    top: 28%;
+                                    left: -6%;
+                                    width: 37%;
+                                    padding-top: 37%;
+                                    background: url(../img/static_pages/cup_x2.png) no-repeat 0% 40%;
+                                    background-size: contain;
+                                    transform: rotate(10deg);
+                                }
+
+
+                                .star {
+                                    width: 20%;
+                                    padding-top: 20%;
+                                    top: 14%;
+                                    position: absolute;
+                                    right: 5%;
+                                    transform: scale(-1, 1) rotate(-10deg);
+                                }
+                            }
+                        }
+
+                        &-image {
+                            @include screenW(pda) {
+                                order: 2;
+                            }
+
+                            background: url(../img/static_pages/prize1_f.png) no-repeat 50% 50%;
+                            background-size: contain;
+
+                            @media (-webkit-min-device-pixel-ratio: 2) {
+                                background: url(../img/static_pages/prize1_f_x2.png) no-repeat 50% 50%;
+                                background-size: contain;
+                            }
+
+                            @include screenW(pda) {
+                                background-position: 50% -20rem;
+                                background-size: auto 95%;
+                            }
+                        }
+
+                        &-label {
+                            bottom: 30rem;
+
+                            @include screenW(pda) {
+                                order: 1;
+                                bottom: 0;
+                                margin-top: 20px;
+                                width: 100%;
+
+                                &-subtitle {
+                                    display: block;
+                                    width: 100%;
+                                    padding-left: 5%;
+                                }
+
+                                &-title {
+                                    width: 100%;
+                                    padding-left: 18%;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.m_2 {
+                    @include screenW(pda) {
+                        margin-bottom: 20rem;
+                    }
+
+                    .item {
+                        &-place {
+                            top: 120rem;
+                            left: 30rem;
+                            right: auto;
+
+                            @include screenW(pda) {
+                                top: 50px;
+                                align-self: flex-start;
+                                left: 0;
+                                margin: 0 0 0 20px;
+                                font-size: 35rem;
+                                width: auto;
+                                padding-top: 3rem;
+                            }
+                        }
+
+                        &-wrapper {
+                            background: url(../img/static_pages/crown_x2.png) no-repeat 20% 2%;
+                            background-size: 20% auto;
+                            @include screenW(pda){
+
+                                position: relative;
+                                background: transparent;
+                                &:before {
+                                    content: "";
+                                    position: absolute;
+                                    top: 0%;
+                                    left: 56%;
+                                    width: 24%;
+                                    padding-top: 24%;
+                                    background: url(../img/static_pages/crown_x2.png) no-repeat 0 0;
+                                    background-size: contain;
+                                    transform: rotate(10deg);
+                                }
+                            }
+
+                            .star {
+                                position: absolute;
+                                &.m_left {
+                                    width: 16%;
+                                    padding-top: 16%;
+                                    top: 50%;
+                                    left: 12%;
+                                    transform: scale(1, 1) rotate(-10deg);
+                                }
+                                &.m_right {
+                                    width: 30%;
+                                    padding-top: 30%;
+                                    bottom: 5%;
+                                    right: 10%;
+                                    transform: scale(-1, 1) rotate(-10deg);
+                                }
+
+                            }
+
+                        }
+
+                        &-image {
+                            transform: scale(1.05);
+                            background: url(../img/static_pages/prize2_f.png) no-repeat 50% 50%;
+                            background-size: contain;
+
+                            @media (-webkit-min-device-pixel-ratio: 2) {
+                                background: url(../img/static_pages/prize2_f_x2.png) no-repeat 50% 50%;
+                                background-size: contain;
+                            }
+                            @include screenW(pda){
+                                transform: rotate(8deg) scale(1.1) translateY(20rem);
+                            }
+                        }
+
+                        &-label {
+                            bottom: 100rem;
+                            left: auto;
+
+                            @include screenW(pda){
+                                position: absolute;
+                                top: 29%;
+                                left: 0;
+                                width: auto;
+                                right: 0;
+                                bottom: auto;
+                                &-subtitle {
+                                    display: block;
+                                    width: 100%;
+                                    padding-left: 25%;
+                                }
+
+                                &-title {
+                                    width: 100%;
+                                    padding-left: 5%;
+                                }
+
+                            }
+                        }
+                    }
+
+                    &:hover {
+
+                        .item-image {
+                            transform: scale(1.075);
+                        }
+
+                    }
+                }
+
+                &.m_3 {
+                    .item {
+                        &-place {
+                            @include screenW(pda) {
+                                align-self: end;
+                                margin: 5% 12% 3% 0;
+                                font-size: 30rem;
+                                width: auto;
+                                padding-top: 4rem;
+                            }
+                        }
+                        &-wrapper {
+                            background: url(../img/static_pages/box_x2.png) no-repeat 90% 15%;
+                            background-size: 30% auto;
+
+                            @include screenW(pda){
+                                position: relative;
+                                background: transparent;
+                                &:before {
+                                    content: "";
+                                    position: absolute;
+                                    top: 0%;
+                                    left: 10%;
+                                    width: 30%;
+                                    padding-top: 30%;
+                                    background: url(../img/static_pages/box_x2.png) no-repeat 0% 40%;
+                                    background-size: contain;
+                                    transform: rotate(-30deg);
+                                }
+                            }
+                            .star {
+                                position: absolute;
+                                width: 28%;
+                                padding-top: 28%;
+                                bottom: 5%;
+                                right: 2%;
+                                transform: scale(-1, 1) rotate(-10deg);
+                            }
+
+                        }
+
+                        &-image {
+                            background: url(../img/static_pages/prize3_f.png) no-repeat 50% 50%;
+                            background-size: auto 90%;
+
+                            @media (-webkit-min-device-pixel-ratio: 2) {
+                                background: url(../img/static_pages/prize3_f_x2.png) no-repeat 50% 50%;
+                                background-size: auto 90%;
+                            }
+                            @include screenW(pda){
+                                background-position: 50% 50%;
+                                background-size: auto 100%;
+                                transform: scale(1) translateY(30rem);
+                            }
+                        }
+
+                        &-label {
+                            bottom: 40px;
+                            @include screenW(pda){
+                                position: absolute;
+                                top: 23%;
+                                bottom: auto;
+                                left: auto;
+                                right: 10%;
+                                align-items: end;
+
+                                &-title {
+                                    padding-right: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.m_4 {
+                    .item {
+                        &-place {
+                            width: 300px;
+                            @include screenW(pda) {
+                                align-self: end;
+                                margin: 5% 12% 0 0;
+                                font-size: 30rem;
+                                max-height: 40rem;
+                                width: auto;
+                                padding-top: 2rem;
+                            }
+                        }
+
+                        &-wrapper {
+                            background: none;
+
+                            .star {
+                                width: 23%;
+                                padding-top: 23%;
+                                top: 35%;
+                                position: absolute;
+                                left: 7%;
+                                transform: scale(1, 1) rotate(-10deg);
+                            }
+                        }
+
+                        &-image {
+                            background: url(../img/static_pages/prize4_f.png) no-repeat 50% 50%;
+                            background-size: contain;
+
+                            @media (-webkit-min-device-pixel-ratio: 2) {
+                                background: url(../img/static_pages/prize4_f_x2.png) no-repeat 50% 50%;
+                                background-size: contain;
+                            }
+                            @include screenW(pda){
+                                background-position: 0% 100%;
+                                background-size: auto 85%;
+                                transform: scale(-1, 1);
+                            }
+                        }
+
+                        &-label {
+                            bottom: 40px;
+                            @include screenW(pda){
+                                position: absolute;
+                                top: 23%;
+                                bottom: auto;
+                                left: auto;
+                                right: 10%;
+                                align-items: end;
+
+                                &-subtitle {
+                                    order: 1;
+                                }
+
+                                &-title {
+                                    padding-right: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.m_5 {
+                    .item {
+                        &-place {
+                            width: 300px;
+                            @include screenW(pda) {
+                                align-self: flex-start;
+                                margin: 0 0 0 5rem;
+                                font-size: 30rem;
+                                max-height: 40rem;
+                                width: auto;
+                                padding-top: 2rem;
+                            }
+                        }
+
+                        &-wrapper {
+                            background: none;
+
+                            .star {
+                                width: 45%;
+                                padding-top: 45%;
+                                top: 40%;
+                                position: absolute;
+                                left: 4%;
+                                transform: scale(1, 1) rotate(-10deg);
+                            }
+
+                        }
+
+                        &-image {
+                            top: 20px;
+                            background: url(../img/static_pages/prize5_f.png) no-repeat 50% 120%;
+                            background-size: auto 90%;
+
+                            @media (-webkit-min-device-pixel-ratio: 2) {
+                                background: url(../img/static_pages/prize5_f_x2.png) no-repeat 50% 120%;
+                                background-size: auto 90%;
+                            }
+                            @include screenW(pda){
+                                transform: rotate(12deg) scale(1) translate(10%, -7%);
+                            }
+                        }
+
+                        &-label {
+                            bottom: 100rem;
+                            left: auto;
+                            padding-left: 40rem;
+
+                            @include screenW(pda){
+                                position: absolute;
+                                left: 0%;
+                                right: auto;
+                                bottom: 25%;
+                                z-index: 100;
+                                transform: scale(1.2);
+                                padding-left: 45rem;
+
+                                .item-label-title {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        &-btns {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 50rem;
+            width: 700rem;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            flex-flow: row;
+            height: 60rem;
+            justify-content: space-between;
+
+            @include screenW(pda) {
+                display: none;
+            }
+
+
+            .cmnroundbtn {
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 20rem;
+                    height: 20rem;
+                    margin: auto;
+                    background: url(../img/arrow.svg) no-repeat 50% 50%;
+                    background-size: 20rem;
+                }
+
+                &.disable {
+                    opacity: .5;
+                    cursor: default;
+                }
+            }
+
+            .leftbtn:before {
+                transform: rotate(-90deg)
+            }
+
+            .rightbtn:before {
+                transform: rotate(90deg)
+            }
+
+        }
+    }
+}
+
+.b_lifeHacks {
+    padding-top: $fullHeaderHeight;
+
+    @include screenW(pda){
+        padding: 0 0 40rem;
+
+        @media (orientation: landscape){
+            padding-top: $fullHeaderHeight;
+        }
+    }
+
+    &.show {
+        .b_static_page-content {
+            top: 0;
+            opacity: 1;
+        }
+
+        .megama {
+            right: 5.5%;
+            opacity: 1;
+            transform: scale(-1, 1);
+
+        }
+
+        .star {
+            &.m_left_top {
+                left: 15%;
+                top: calc($fullHeaderHeight + 60px);
+                transform: scale(1, 1) rotate(-20deg);
+                opacity: 1;
+            }
+
+            &.m_right_middle {
+                top: 25%;
+                right: 5%;
+                transform: scale(-1, 1) rotate(0deg);
+                opacity: 1;
+            }
+
+            &.m_left_bottom {
+                bottom: 20%;
+                left: 10%;
+                transform: scale(-1, 1) rotate(-10deg);
+                opacity: 1;
+            }
+        }
+
+        .fingerhand.m_left {
+            transform: rotate(-40deg);
+            left: -2%;
+            top: 40%;
+            opacity: 1;
+
+            &.providential {
+                transition: all .8s ease 0s;
+            }
+
+            &.fingerCheck {
+                transform: rotate(-30deg);
+            }
+        }
+    }
+
+    .b_static_page-content {
+        max-width: 640rem;
+
+        position: relative;
+        top: 40rem;
+        opacity: 0;
+        transition: all 0.6s $easeOutBack;
+    }
+
+
+    &-article {
+        position: relative;
+        z-index: 50;
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        width: 100%;
+        padding-top: 75rem;
+
+        @include screenW(pda){
+            padding-top: 30rem;
+        }
+
+        .block {
+            position: relative;
+            display: flex;
+            flex-flow: column;
+            align-items: flex-start;
+            margin-bottom: 80rem;
+            top: 100rem;
+            opacity: 0;
+            transition: all 0.8s $easeOutBack ;
+
+            &.show {
+                top: 0;
+                opacity: 1;
+            }
+
+            &:nth-child(2),
+            &:nth-child(5) {
+                .block {
+                    &-num {
+                        background: $pink;
+                    }
+
+                    &-text {
+                        .mark {
+                            background: $pink;
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(3),
+            &:nth-child(7) {
+                .block {
+                    &-num {
+                        background: $peach;
+                    }
+
+                    &-text {
+                        .mark {
+                            background: $peach;
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(4) {
+                .block {
+                    &-num {
+                        background: $green;
+                    }
+
+                    &-text {
+                        .mark {
+                            background: $green;
+                        }
+                    }
+                }
+            }
+
+            &-header {
+                position: relative;
+                display: flex;
+                flex-flow: row;
+                align-items: center;
+                width: 100%;
+                padding: 25rem 20rem;
+
+                @include screenW(pda){
+                    padding: 25rem 0;
+                }
+            }
+
+            &-num {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 94rem;
+                height: 94rem;
+                font: 400 60rem/1 $megaFont;
+                color: $blue;
+                flex-shrink: 0;
+                background: $green;
+                border-radius: 50%;
+                margin-left: -57rem;
+                @include screenW(pda){
+                    margin-left: -20rem;
+                    width: 72rem;
+                    height: 72rem;
+                    font: 400 26rem/1 $megaFont;
+                    z-index: -1;
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        right: 50%;
+                        bottom: 0;
+                        width: 100%;
+                        background: inherit;
+                        z-index: -1;
+                    }
+                }
+            }
+
+            &-title {
+                font: 400 20rem/1.7 $pixelFont;
+                color: $blue;
+                // margin-bottom: 25rem;
+                text-transform: uppercase;
+                margin-left: 20rem;
+                @include screenW(pda){
+                    margin-left: 10rem;
+                    font: 400 16rem/1.3 $pixelFont;
+                }
+            }
+
+            &-text {
+                position: relative;
+                display: flex;
+                flex-flow: column;
+                // width: calc(100% - 94px);
+                width: 100%;
+                padding: 0 20rem;
+                font: 400 16rem/1.5 $megaFont;
+                color: $black;
+
+                p+p {
+                    margin-top: 10rem;
+                }
+
+                .mark {
+                    margin: 25rem -20rem;
+                    padding: 25rem 20rem;
+                    font: 500 20rem/1.5 $megaFont;
+                    color: $blue;
+                    background: $green;
+                    border-radius: 24rem;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
+                p.notice {
+                    color: $blue;
+                }
+
+                a {
+                    color: inherit;
+                    text-decoration: underline;
+                }
+
+                .img-wrapper {
+                    position: relative;
+                    margin: 25rem -20rem;
+
+                    img {
+                        display: block;
+                        width: 100%;
+                    }
+
+                    &.m_special_7 {
+                        .mark {
+                            margin: 0;
+                            width: 49.4%;
+                            position: absolute;
+                            bottom: 0;
+                            font-size: 16rem;
+                            padding: 37rem 20rem;
+                            color: $black;
+
+                            @include screenW(pda){
+                                margin: 25rem 0;
+                                width: 100%;
+                                position: relative;
+                                padding: 25rem 20rem;
+                                font: 500 20rem/1.5 $megaFont;
+                                color: $blue;
+                            }
+                        }
+                    }
+                }
+
+                .img-wrapper+.mark {
+                    margin-top: 0;
+                }
+            }
+
+        }
+    }
+
+    .star {
+        position: fixed;
+        z-index: 20;
+        opacity: 0;
+
+        @include screenW(pda){
+            display: none;
+        }
+
+        &.m_left_top {
+            left: 10%;
+            top: calc($fullHeaderHeight + 120px);
+            width: 12%;
+            padding-top: 12%;
+            transform: scale(0.5, 0.5) rotate(-20deg);
+            transition-delay: 0.9s;
+        }
+
+        &.m_right_middle {
+            top: 35%;
+            right: 2%;
+            width: 7%;
+            padding-top: 7%;
+            transform: scale(-0.5, 0.5) rotate(0deg);
+            transition-delay: 1.2s;
+        }
+
+        &.m_left_bottom {
+            bottom: 10%;
+            left: 15%;
+            width: 7%;
+            padding-top: 7%;
+            transform: scale(-0.5, 0.5) rotate(-10deg);
+            transition-delay: 1.6s;
+        }
+    }
+
+    .fingerhand.m_left {
+        opacity: 0;
+        transform: rotate(-60deg);
+        transform-origin: 0 50%;
+        left: -30%;
+        top: 55%;
+
+        transition: all 1.8s ease 2s;
+        @include screenW(pda){
+            display: none;
+        }
+    }
+
+    .megama {
+        position: fixed;
+        z-index: 20;
+        top: calc($fullHeaderHeight + 60px);
+        right: -5.5%;
+        width: 25%;
+        padding-top: 25%;
+        opacity: 0;
+        transform: scale(-0.5, 0.5);
+
+        transition: all 0.8s $easeOutBack 0.6s;
+        // transition: all 0.8s ease 0.6s;
+
+        background: url(../img/static_pages/Hero.png) no-repeat 50% 50%;
+        background-size: auto 100%;
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            background: url(../img/static_pages/Hero_x2.png) no-repeat 50% 50%;
+            background-size: auto 100%;
+        }
+        @include screenW(pda){
+            display: none;
+        }
+    }
+
+    &-goupbtn {
+        align-self: flex-start;
+        margin-left: 20px;
+
+        @include screenW(pda){
+            margin: 40rem auto 100rem;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 20rem;
+            height: 20rem;
+            margin: auto;
+            background: url(../img/arrow.svg) no-repeat 50% 50%;
+            background-size: 20rem;
+        }
+    }
+}

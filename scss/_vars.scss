@@ -1,0 +1,44 @@
+$pixelFont: "Press Start 2P", sans-serif;
+$megaFont: "MegaSans", sans-serif;
+
+$blue:      #8654CC;
+$darkBlue:  #6933B0;
+$lightBlue: #CA99F3;
+$blueShadow:rgb(83, 26, 157);
+
+$peach:     #FFE3C7;
+$pink:      #EDCFFC;
+$red:       #FF6262;
+$green:     #C3F598;
+
+$black:     #2E2E2E;
+$grey:      #BDBDBD;
+
+$bgLight:   #F6EBFF;
+
+$headerHeight: 80px;
+$fullHeaderHeight: 110px;
+$mobileHeaderHeight: 60px;
+
+$commonEasing: cubic-bezier(0.25, 1, 0.5, 1);
+$easeOutBack: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+@mixin screenW($size) {
+    @if $size ==pda {
+        @media screen and (max-width: 1023px) {
+            @content;
+        }
+    }
+
+    @else {
+        @media screen and (max-width: $size) {
+            @content;
+        }
+    }
+}
+
+@mixin screenH($size) {
+    @media screen and (max-height: $size) {
+        @content;
+    }
+}

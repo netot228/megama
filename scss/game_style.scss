@@ -1,0 +1,1887 @@
+@import 'reset';
+@import 'fonts';
+@import 'vars';
+
+body {
+    background: $bgLight;
+}
+
+.b_level {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+    height: calc(100% - $headerHeight);
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+
+    &.m_loading {
+        &.m_level1 {
+            background: url(../img/game/canvas/bg/lv1_bg.png) repeat-x 0 0;
+            background-size: auto 100%;
+        }
+        &.m_level2 {
+            background: url(../img/game/canvas/bg/lv2_bg.png) repeat-x 0 0;
+            background-size: auto 100%;
+        }
+        &.m_level3 {
+            background: url(../img/game/canvas/bg/lv3_bg.png) repeat-x 0 0;
+            background-size: auto 100%;
+        }
+        &.m_level4 {
+            background: url(../img/game/canvas/bg/lv4_bg.png) repeat-x 0 0;
+            background-size: auto 100%;
+        }
+        &.m_level5 {
+            background: url(../img/game/canvas/bg/lv5_bg.png) repeat-x 0 0;
+            background-size: auto 100%;
+        }
+    }
+
+    @include screenW(pda){
+        min-height: calc(100vh - $mobileHeaderHeight);
+        background: transparent;
+        height: auto;
+
+        flex-flow: column;
+
+        padding-bottom: 0;
+        transition: all 1s ease;
+
+        @media (orientation: landscape){
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        &.m_fixed {
+            // padding-bottom: 100px;
+        }
+
+        &.m_loading {
+            // background: transparent;
+
+            // .b_level {
+            //     &-curtain {
+            //         display: none;
+            //         &.show {
+            //             display: block;
+            //         }
+            //     }
+            // }
+        }
+    }
+
+    &-curtain {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(17,0,46,.9);
+        opacity: 1;
+        transform: scale(1);
+        border-radius: 0;
+        transition: all .6s $commonEasing;
+
+        &.hide {
+            opacity: 0;
+            border-radius: 50%;
+            transform: scale(0);
+        }
+        &.show {
+            opacity: 1;
+            transform: scale(1);
+            border-radius: 0;
+        }
+        @include screenW(pda){
+            opacity: 0;
+            border-radius: 50%;
+            transform: scale(0);
+            &.show {
+                opacity: 1;
+                transform: scale(1);
+                border-radius: 0;
+            }
+        }
+    }
+
+    &-popupWindow {
+        position: absolute;
+        z-index: 10;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        @include screenW(pda){
+            @media (orientation: landscape){
+
+                &:not(.show, .b_level-startwindow){
+                    display: none;
+                }
+            }
+        }
+
+    }
+
+    &-startwindow {
+        transform: translateY(0);
+        opacity: 1;
+        transition: all 1s $commonEasing;
+
+        @include screenW(pda){
+            // @media (orientation: landscape){
+                justify-content: start;
+                position: relative;
+                display: flex;
+                width: 100%;
+                height: 100%;
+                padding: 20rem 0 120rem;
+
+                min-height: calc(100vh - $headerHeight);
+                justify-content: center;
+            // }
+        }
+
+        &.m_game_continue {
+            .label,
+            .startbtn {
+                display: none;
+            }
+            .b_level-startwindow-continue {
+                .startbtn {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+
+                    @include screenW(pda){
+                        flex-flow: column;
+                        justify-content: center;
+
+                        @media (orientation: landscape){
+                            flex-flow: row;
+                        }
+                    }
+                    button {
+                        width: 46%;
+
+                        @include screenW(pda){
+                            // width: 100%;
+                            margin-bottom: 20rem;
+                            width: 100%;
+                            @media (orientation: landscape){
+                                width: 200rem;
+                                font-size: 12rem;
+                                margin: 0 10rem;
+                                // height: 34rem;
+                            }
+                        }
+
+                    }
+                    #_id_startNewGame {
+                        &:before {
+                            content: '';
+                            position: relative;
+                            top: 2rem;
+                            display: inline-block;
+                            vertical-align: middle;
+                            width: 20rem;
+                            height: 20rem;
+                            margin-right: 20rem;
+                            background: url(../img/arrow.svg);
+                            background-size: 100%;
+                            transform: rotate(-90deg);
+                            @include screenW(pda){
+                                top: 1rem;
+                                width: 14rem;
+                                height: 14rem;
+                                margin-right: 10rem;
+                            }
+                        }
+                    }
+                    #_id_startLastGame {
+                        &:after {
+                            content: '';
+                            position: relative;
+                            top: 2rem;
+                            display: inline-block;
+                            vertical-align: middle;
+                            width: 20rem;
+                            height: 20rem;
+                            margin-left: 20rem;
+                            background: url(../img/arrow.svg);
+                            background-size: 100%;
+                            transform: rotate(90deg);
+                            @include screenW(pda){
+                                top: 1rem;
+                                width: 14rem;
+                                height: 14rem;
+                                margin-left: 10rem;
+                            }
+                        }
+                    }
+                }
+            }
+            @include screenW(pda){
+                padding: 0;
+            }
+        }
+
+        &.hide {
+            transform: translateY(100vh);
+            opacity: 0;
+
+            @include screenW(pda){
+                @media (orientation: landscape){
+                    display: none;
+                }
+            }
+
+        }
+
+        &-index {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30rem 0;
+            opacity: 1;
+            transform: scale(1) translateX(0);
+            transition: all 0.5s $commonEasing;
+
+            .title {
+                span {
+                    display: inline-block;
+                    margin: 0 14rem;
+                }
+            }
+
+            &.hide {
+                opacity: 0;
+                transform: scale(0) translateX(-100%);
+            }
+
+            @include screenW(pda){
+                @media (orientation: landscape){
+                    padding: 20rem 0 0rem;
+                }
+            }
+
+        }
+        &-registration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            width: 80%;
+            margin: auto;
+            transform: scale(0) translateX(100%);
+            z-index: 10;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30rem 0;
+            transition: all 0.5s $commonEasing;
+
+            &.show {
+                opacity: 1;
+                transform: scale(1) translateX(0);
+            }
+
+            .form {
+                position: relative;
+                display: flex;
+                flex-flow: column;
+                width: 100%;
+                padding-top: 20rem;
+
+                &-row {
+                    display: inline-flex;
+                    flex-flow: row;
+                    width: 100%;
+                    align-items: flex-start;
+                    justify-content: center;
+                    margin-bottom: 10rem;
+
+                    @include screenW(pda){
+                        flex-flow: column;
+                        margin-bottom: 0;
+                    }
+                }
+
+                &-input {
+                    position: relative;
+                    width: 46%;
+                    height: 50rem;
+                    border-radius: 30rem;
+                    border: 3px solid $blue;
+                    margin-left: 10rem;
+                    transition: all 0.7s ease;
+                    box-shadow: inset 0 0 0 rgba(255, 0, 0, 0);
+
+                    @include screenW(pda){
+                        width: 100%;
+                        margin-bottom: 20rem;
+                        margin-left: 0;
+                    }
+
+                    &:first-child {
+                        margin-left: 0;
+                    }
+
+                    &.alarm {
+                        border: 3px solid #f00;
+                        box-shadow: inset 0 0 20rem rgba(255, 0, 0, .7);
+                    }
+
+                    input {
+                        position: absolute;
+                        z-index: 100;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        font: 400 18rem/1 $megaFont;
+                        color: #fff;
+                        display: flex;
+                        align-items: center;
+                        padding: 0 20rem;
+                        border-radius: 30rem;
+                        @include screenW(pda){
+                            color: $black;
+                        }
+                    }
+
+                    label {
+                        position: absolute;
+                        left: 20rem;
+                        top: 0;
+                        height: 46rem;
+                        font: 400 18rem/1 $megaFont;
+                        color: #fff;
+                        display: flex;
+                        align-items: center;
+                        opacity: 1;
+                        transition: all 0.5s ease;
+                        @include screenW(pda){
+                            color: $black;
+                        }
+                    }
+
+                    input:focus+label,
+                    input.checked+label {
+                        top: -50rem;
+                        opacity: 0;
+                    }
+
+                }
+            }
+        }
+
+        &-intro {
+            position: relative;
+            width: 50%;
+            max-width: 900rem;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30rem 0;
+
+            @include screenW(pda){
+                display: block;
+                width: 100%;
+                padding: 0rem 14rem;
+
+
+                .bg {
+                    display: none;
+                }
+            }
+
+            .bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1;
+                border: 5px solid $blue;
+                background: $lightBlue;
+                border-radius: 30px;
+                overflow: hidden;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: -10rem;
+                    left: 0;
+                    right: 0;
+                    height: 105rem;
+                    transform: scale(-1);
+
+                    background: url(../img/bitmap_btm_ornament.png) no-repeat 50% 0;
+                    background-size: auto 100%;
+
+                    @media (-webkit-min-device-pixel-ratio: 2) {
+                        background: url(../img/bitmap_btm_ornament@2x.png) no-repeat 50% 0;
+                        background-size: auto 100%;
+                    }
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10rem;
+                    left: 0;
+                    right: 0;
+                    height: 105rem;
+                    background: url(../img/bitmap_btm_ornament.png) no-repeat 50% 0;
+                    background-size: auto 100%;
+
+                    @media (-webkit-min-device-pixel-ratio: 2) {
+                        background: url(../img/bitmap_btm_ornament@2x.png) no-repeat 50% 0;
+                        background-size: auto 100%;
+                    }
+                }
+            }
+
+            .label {
+                position: absolute;
+                z-index: 5;
+                top: -18rem;
+                left: 0;
+                right: 0;
+                height: 36rem;
+                width: 210rem;
+                margin: auto;
+                font: 400 18rem/1 $megaFont;
+                color: $blue;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: $green;
+                border-radius: 18rem;
+
+                @include screenW(pda) {
+                    top: 0;
+                    position: relative;
+                    margin-bottom: 20rem;
+                    height: 34rem;
+                    width: 170rem;
+                    margin: auto;
+                    font: 400 16rem/1 $megaFont;
+                }
+            }
+
+            .title {
+                position: relative;
+                z-index: 5;
+                padding: 20rem;
+                border-radius: 10rem;
+                background: $lightBlue;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font: 400 62rem/1 $pixelFont;
+                color: #fff;
+
+                @include screenW(pda){
+                    font: 400 40rem/1 $pixelFont;
+                    letter-spacing: -0.2em;
+                    background: transparent;
+                    padding: 0px 0px ;
+                    color: $blue;
+                    text-align: center;
+                    margin-bottom: 0;
+                }
+            }
+            .subtitle {
+                position: relative;
+                z-index: 5;
+                max-width: 690rem;
+                font: 400 20rem/36rem $megaFont;
+                color: $black;
+                text-align: center;
+                margin-bottom: 30rem;
+                background: $lightBlue;
+
+                @include screenW(pda){
+                    width: 100%;
+                    text-align: center;
+                    background: transparent;
+                    padding: 10rem 0;
+                    color: $black;
+                    max-width: unset;
+                    font: 400 14rem/18rem $megaFont;
+                    margin-bottom: 16rem;
+                }
+            }
+            .introduction {
+                position: relative;
+                z-index: 5;
+                width: 690rem;
+                display: flex;
+                align-items: stretch;
+                justify-content: space-between;
+                background: $lightBlue;
+
+                @include screenW(pda){
+                    display: block;
+                    width: 100%;
+                    background: transparent;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: stretch;
+                    overflow: hidden;
+                }
+
+                &-item {
+                    display: inline-flex;
+                    width: 340rem;
+                    flex-shrink: 0;
+                    border: 3px dashed $blue;
+                    border-radius: 20px;
+                    padding: 20rem 26rem;
+                    align-items: center;
+                    flex-flow: column;
+
+                    @include screenW(pda){
+                        width: 100%;
+                        background: $lightBlue;
+                        padding: 20rem 0;
+
+                        @media (orientation: landscape){
+                            width: 48%;
+
+                        }
+                    }
+                }
+                &-rules {
+                    position: relative;
+                    width: 100%;
+                    margin-bottom: 15rem;
+
+                    &.m_uilegend {
+
+                        display: flex;
+                        flex-flow: row nowrap;
+                        align-items: flex-end;
+                        justify-content: start;
+
+                        @include screenW(pda){
+                            justify-content: space-between;
+                            padding: 0 10rem;
+
+                            @media (orientation: landscape){
+                                min-height: 130rem;
+                            }
+
+                        }
+
+                        .lady {
+                            position: relative;
+                            display: inline-flex;
+                            width: 143rem;
+
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                z-index: -1;
+                                bottom: -6rem;
+                                left: 15%;
+                                right: 0;
+                                width: 70%;
+                                margin: 0 auto;
+                                height: 20rem;
+                                border-radius: 50%;
+                                background: #242520;
+                                opacity: .5;
+                                mix-blend-mode: multiply;
+                            }
+                            img {
+                                display: block;
+                                width: 100%;
+                            }
+
+                            @include screenW(pda){
+                                width: 40%;
+                                top: 5px;
+
+                                &:after {
+                                    z-index: 1;
+                                    height: 10px;
+                                    bottom: 0;
+                                }
+                                img {
+                                    position: relative;
+                                    top: 10px;
+                                }
+                            }
+                        }
+
+                        .pushbtn {
+                            position: relative;
+                            padding-bottom: 50rem;
+                            font: 400 22rem/1 $pixelFont;
+                            color: $peach;
+                            text-shadow: 0 4rem 0 $blue;
+                            margin: 0 10rem;
+
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                                width: 40rem;
+                                height: 40rem;
+                                margin: auto;
+                                border-radius: 50%;
+                                background: url(../img/arrow.svg) no-repeat 50% 50% $blue;
+                                background-size: 20rem;
+                                box-shadow: 0 3rem 0 #531A9D;
+                            }
+                        }
+
+                        .fallObj {
+                            position: relative;
+                            width: 76rem;
+                            top: 7rem;
+
+                            @include screenW(1400px){
+                                width: 20%;
+                            }
+
+                            img {
+                                display: block;
+                                width: 100%;
+                            }
+                            @include screenW(pda){
+                                width: 34%;
+                                img {
+                                    width: 80%;
+                                }
+                            }
+                        }
+
+                        .scoreboard {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            display: flex;
+                            flex-flow: column;
+                            .item {
+                                position: relative;
+                                display: flex;
+                                flex-flow: row;
+                                align-items: center;
+                                font: 400 14rem/1 $pixelFont;
+                                color: $peach;
+                                margin-bottom: 5rem;
+
+                                &:before {
+                                    content: '';
+                                    display: inline-block;
+                                    position: relative;
+                                    padding-left: 20rem;
+                                    height: 20rem;
+                                    margin-right: 8rem;
+                                    font: 400 14rem/20rem $pixelFont;
+                                    color: $peach;
+                                }
+
+                                &.m_lives {
+                                    &:before {
+                                        background: url(../img/game/heart_shadow.png) no-repeat 0 0;
+                                        background-size: 20rem;
+                                    }
+                                }
+                                &.m_score {
+                                    &:before {
+                                        background: url(../img/game/green_star_shadow.png) no-repeat 0 0;
+                                        background-size: 20rem;
+                                    }
+                                }
+                            }
+                            @include screenW(pda){
+                                right: 30rem;
+                            }
+                        }
+                    }
+
+                    &.m_costlegend {
+                        display: flex;
+                        flex-flow: column;
+                        align-items: center;
+                        .costitem {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            align-items: center;
+                            height: 50rem;
+
+                            .icon {
+                                margin-right: 10rem;
+                                @include screenW(pda){
+                                    margin-right: 0rem;
+                                }
+                                &.m_coin {
+                                    display: inline-flex;
+                                    width: 40rem;
+                                    height: 40rem;
+                                    background: url(../img/game/coin_shadow.png) no-repeat 50% 50%;
+                                    background-size: contain;
+
+                                    @include screenW(pda){
+                                        width: 30rem;
+                                        height: 30rem;
+                                    }
+                                }
+                                &.m_50 {
+                                    display: inline-flex;
+                                    width: 60rem;
+                                    height: 32rem;
+                                    background: url(../img/game/50_sale_shadow.png) no-repeat 50%;
+                                    background-size: contain;
+                                    flex-shrink: 0;
+                                    @include screenW(pda){
+                                        width: 50rem;
+                                        height: 27rem;
+                                    }
+
+                                }
+                                &.m_bonus {
+                                    display: inline-flex;
+                                    width: 60rem;
+                                    height: 60rem;
+                                    background: url(../img/game/bonus_icon_shadow.png) no-repeat 50%;
+                                    background-size:contain;
+                                    @include screenW(pda){
+                                        width: 44rem;
+                                        height: 44rem;
+                                    }
+                                }
+                            }
+
+                            .text {
+                                display: inline-flex;
+                                font: 400 22rem/1 $pixelFont;
+                                color: $peach;
+                                text-shadow: 0 4rem 0 $blue;
+                                flex-flow: row nowrap;
+                                @include screenW(pda){
+                                    font: 400 18rem/1 $pixelFont;
+                                }
+
+                                span {
+                                    display: inline-flex;
+                                    margin-left: 10rem;
+                                }
+                            }
+                        }
+                    }
+                }
+                &-text {
+                    font: 400 14rem/21rem $megaFont;
+                    color: $black;
+                    text-align: center;
+
+                    @include screenW(pda){
+                        padding: 0 20rem;
+                    }
+
+                    &.m_mobile_only {
+                        display: none;
+                        @include screenW(pda){
+                            display: block;
+                        }
+                    }
+
+                    &.m_desktop_only {
+                        display: block;
+                        @include screenW(pda){
+                            display: none;
+                        }
+                    }
+
+                }
+            }
+
+            .startbtn {
+                position: relative;
+                z-index: 50;
+                width: 350rem;
+                height: 112rem;
+                padding: 20rem;
+                border-radius: 50rem;
+                background: $lightBlue;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+
+                @include screenW(pda){
+                    width: auto;
+                    background: transparent;
+                    padding: 20rem;
+                    height: auto;
+                }
+
+                #_id_startGameNextMobBtn {
+                    display: none;
+                    @include screenW(pda){
+                        display: block;
+                        @media (orientation: landscape){
+                            display: none;
+                        }
+                    }
+                }
+                #_id_startGameBtn {
+                    display: block;
+                    @include screenW(pda){
+                        display: none;
+                        @media (orientation: landscape){
+                            display: block;
+                        }
+                    }
+                }
+
+                button {
+                    position: relative;
+                    top: 0;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 310rem;
+                    height: 72rem;
+                    background: $blue;
+                    font: 400 20rem/1 $pixelFont;
+                    color: $peach;
+                    cursor: pointer;
+                    box-shadow: 0 6rem 0 #531A9D;
+                    border-radius: 50rem;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background: $darkBlue;
+                    }
+                    &:active {
+                        background: $darkBlue;
+                        top: 6rem;
+                        box-shadow: 0 0px $blueShadow;
+                    }
+
+                    @include screenW(pda){
+                        width: 180rem;
+                        height: 48rem;
+                        box-shadow: 0 3rem 0 #531A9D;
+                        font: 400 16rem/1 $pixelFont;
+
+                        &:active {
+                            background: $darkBlue;
+                            top: 3rem;
+                            box-shadow: 0 0px $blueShadow;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        &-continue {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            width: 80%;
+            margin: auto;
+            transform: scale(0) translateX(100%);
+            z-index: 10;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30rem 0;
+            transition: all 0.5s $commonEasing;
+
+            @include screenW(pda){
+                width: 90%;
+            }
+
+            &.show {
+                opacity: 1;
+                transform: scale(1) translateX(0);
+            }
+
+            &-title {
+                position: relative;
+                width: 100%;
+                margin: auto;
+                text-align: center;
+                display: block;
+                font: 500 34rem/1 $megaFont;
+                color: #fff;
+                background: #CA99F3;
+                padding: 20rem;
+                border-radius: 20rem;
+
+                @include screenW(pda){
+                    padding: 14rem 0;
+                    color: $blue;
+                    background: transparent;
+                    padding-bottom: 0;
+                    margin-bottom: 0;
+                    margin-top: 0;
+                    font: 500 20rem/1 $megaFont;
+                }
+
+                span {
+                    display: inline-block;
+                    font-size: 1.2em;
+                    color: $peach;
+                    font-family: $pixelFont;
+                    margin: 0 5rem;
+                    vertical-align: middle;
+                    @include screenW(pda){
+                        color: $peach;
+                        // color: $blue;
+                        text-shadow: 3px 3px $darkBlue;
+                        font-size: 1.2em;
+                        line-height: 1.5;
+                    }
+                }
+                p+p {
+                    margin-top: 5rem;
+                    // @include screenW(pda){
+                    //     margin-top: 0;
+                    // }
+                }
+            }
+
+            .startbtn {
+                @include screenW(pda){
+                    padding-top: 0;
+                }
+            }
+
+        }
+
+
+
+        &-controller-left {
+            position: fixed;
+            z-index: 10;
+            bottom: 60rem;
+            left: 0;
+            width: 20%;
+            height: 50vh;
+            background: url(../img/controller_l.png) no-repeat 0 50%;
+            background-size: contain;
+            @include screenW(1600px){
+                width: 14%;
+            }
+            @include screenW(pda){
+                display: none;
+            }
+        }
+        &-controller-right {
+            position: fixed;
+            z-index: 10001;
+            top: 0;
+            right: 3%;
+            width: 20%;
+            height: 50vh;
+            background: url(../img/controller_r.png) no-repeat 100% 0%;
+            background-size: contain;
+            @include screenW(1600px){
+                position: absolute;
+                width: 14%;
+            }
+            @include screenW(pda){
+                display: none;
+            }
+        }
+    }
+
+    &-countdown {
+        transform: translateY(-100vh);
+        opacity: 0;
+        transition: all 1s $commonEasing;
+
+        &.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        &-context {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+        }
+
+        .label {
+            font: 400 16rem/1 $pixelFont;
+            color: $peach;
+            margin-bottom: 30rem;
+            text-transform: uppercase;
+
+            @include screenW(pda){
+                font-size: 10rem;
+                margin-bottom: 10rem;
+            }
+        }
+        .title {
+            font: 400 70rem/1 $megaFont;
+            color: #fff;
+            margin-bottom: 40rem;
+
+            @include screenW(pda){
+                font-size: 28rem;
+                margin-bottom: 40rem;
+                @media (orientation: landscape){
+                    margin-bottom: 20rem;
+                }
+            }
+        }
+
+        .bonus {
+            display: flex;
+            flex-flow: row;
+            margin-bottom: 40rem;
+
+            @include screenW(pda){
+                width: 100%;
+                align-items: center;
+                justify-content: space-around;
+                @media (orientation: landscape){
+                    justify-content: center;
+                    margin-bottom: 20rem;
+                }
+            }
+
+            &-item {
+                position: relative;
+                top: 0;
+                width: 140rem;
+                height: 140rem;
+                margin: 0 30rem;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    width: 0;
+                    height: 0;
+                    margin: auto;
+                    box-shadow: 0 0 50rem 30rem #fff61f;
+                    opacity: 1;
+                }
+
+                @include screenW(pda){
+                    width: 25%;
+                    height: auto;
+                    padding-top: 25%;
+                    margin: 0;
+                    @media (orientation: landscape){
+                        width: 80rem;
+                        height: 80rem;
+                        padding-top: 0;
+                        margin: 0 30rem;
+                    }
+                }
+
+                img {
+                    position: relative;
+                    z-index: 1;
+                    display: block;
+                    height: 90%;
+                }
+
+            }
+        }
+
+        .countdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column;
+            width: 120rem;
+            height: 120rem;
+            color: $peach;
+            background: $blue;
+            border-radius: 50%;
+
+
+            @include screenW(pda){
+                width: auto;
+                display: flex;
+                flex-flow: row;
+                background: transparent;
+                border: 4px solid $blue;
+                height: 60rem;
+                padding: 0 20rem;
+                border-radius: 60rem;
+            }
+
+            &-title {
+                display: flex;
+                flex-flow: column;
+                font: 400 14rem/1.2 $megaFont;
+                margin-bottom: 10rem;
+
+                @include screenW(pda){
+                    font-size: 13rem;
+                    margin-bottom: 0;
+                    width: 46rem;
+                }
+            }
+            &-counter {
+                font: 400 24rem/1 $pixelFont;
+            }
+
+            &-startbtn {
+                display: none;
+                @include screenW(pda){
+                    position: absolute;
+                    top: 0;
+                    left: -4rem;
+                    right: -4rem;
+                    bottom: 0;
+                    height: 100%;
+                    width: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font: 400 16rem/1 $pixelFont;
+                    text-transform: uppercase;
+                    color: $peach;
+                    border-radius: 60rem;
+                    background: $blue;
+                    opacity: 1;
+                    transition: all 0.3s ease;
+                    &.hide {
+                        opacity: 0;
+                    }
+
+                }
+            }
+
+        }
+    }
+    &-finishwindow {
+        text-align: center;
+        transform: translateY(-100vh);
+        opacity: 0;
+        transition: all 1s $commonEasing;
+
+        @include screenW(pda){
+            @media (orientation: landscape){
+                justify-content: flex-start;
+                padding: 70px 0;
+                overflow: scroll;
+            }
+        }
+
+        &.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .title {
+            font: 400 70rem/1 $megaFont;
+            color: #fff;
+            margin-bottom: 20rem;
+
+            @include screenW(pda){
+                display: none;
+                font: 400 24rem/1 $megaFont;
+            }
+        }
+        .subtitle {
+            font: 400 40rem/1.3 $megaFont;
+            color: #fff;
+            margin-bottom: 30rem;
+            letter-spacing: 0.01em;
+            max-width: 1000rem;
+
+            @include screenW(pda){
+                font-size: 20rem;
+                margin-bottom: 10rem;
+                padding: 0 20rem;
+            }
+        }
+        .quantity {
+            font: 400 16rem/1 $pixelFont;
+            color: $peach;
+            margin-bottom: 30rem;
+            text-transform: uppercase;
+
+            @include screenW(pda){
+                margin-bottom: 40rem;
+                font-size: 10rem;
+                @media (orientation: landscape){
+                    margin-bottom: 20rem;
+                }
+            }
+        }
+        .bonus {
+            position: relative;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+
+            @media (orientation: landscape){
+                justify-content: center;
+            }
+
+
+            &-item {
+                display: inline-flex;
+                flex-flow: column;
+                align-items: center;
+                width: 140rem;
+                flex-shrink: 0;
+                cursor: pointer;
+                margin: 0 20rem;
+
+                @include screenW(pda){
+                    max-width: 100rem;
+                    width: 30%;
+                    margin: 0;
+
+                    @media (orientation: landscape){
+                        margin: 0 10px;
+                    }
+                }
+
+                &:hover {
+                    .bonus-item-image:before {
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+                    .bonus-item-label {
+                        color: $blue;
+                    }
+                }
+
+                &-image {
+                    position: relative;
+                    width: 140rem;
+                    height: 140rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 10rem;
+
+                    @include screenW(pda){
+                        width: 80rem;
+                        height: 100rem;
+                        @media (orientation: landscape){
+                            width: 70rem;
+                            height: 70rem;
+                        }
+                    }
+
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        z-index: -1;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        opacity: 0;
+                        border-radius: 50%;
+                        background: $blue;
+                        transform: scale(.2);
+                        transition: all 0.5s ease;
+                    }
+
+                    img {
+                        display: block;
+                        max-width: 90%;
+                        max-height: 98%;
+                    }
+                }
+                &-label {
+                    font: 400 16rem/1.5 $megaFont;
+                    color: #fff;
+                    text-decoration: underline;
+                    text-align: center;
+                    transition: all 0.5s ease;
+                    @include screenW(pda){
+                        font-size: 11rem;
+                    }
+                }
+            }
+        }
+        .buttons {
+            position: relative;
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            justify-content: center;
+            padding: 40rem 0;
+
+            @include screenW(pda){
+                padding: 60rem 0;
+                flex-flow: column;
+                width: 100%;
+
+                @media (orientation: landscape){
+                    flex-flow: row;
+                    padding: 20rem 0 20rem;
+                }
+            }
+
+            &-item {
+                position: relative;
+                top: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 360rem;
+                height: 72rem;
+                background: $blue;
+                font: 400 20rem/1 $pixelFont;
+                color: $peach;
+                text-transform: uppercase;
+                cursor: pointer;
+                box-shadow: 0 6rem 0 #531A9D;
+                border-radius: 50rem;
+                transition: all 0.3s ease;
+                flex-shrink: 0;
+                margin: 0 20rem;
+
+                @include screenW(pda){
+                    width: 60%;
+                    height: 40rem;
+                    font-size: 11rem;
+                    margin: 0 0 40rem;
+
+                    @media (orientation: landscape){
+                        width: 200rem;
+                        height: 34rem;
+                        margin: 0 10rem;
+                    }
+                }
+
+                &:hover {
+                    background: $darkBlue;
+                }
+                &:active {
+                    background: $darkBlue;
+                    top: 6rem;
+                    box-shadow: 0 0 $blueShadow;
+                }
+
+                &.m_next {
+                    &:before {
+                        content: '';
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 20rem;
+                        height: 20rem;
+                        margin-right: 20rem;
+                        background: url(../img/arrow.svg);
+                        background-size: 100%;
+                        transform: rotate(90deg);
+
+                        @include screenW(pda){
+                            width: 14rem;
+                            height: 14rem;
+                            margin-right: 14rem;
+                        }
+                    }
+                }
+                &.m_close {
+                    &:before {
+                        content: 'x';
+                        display: inline-block;
+                        vertical-align: middle;
+                        font: 400 20rem/1 $pixelFont;
+                        color: $peach;
+                        text-transform: uppercase;
+                        margin-right: 20rem;
+                        @include screenW(pda){
+                            font: 400 14rem/1 $pixelFont;
+                            margin-right: 14rem;
+                        }
+                    }
+                }
+                &.m_again {
+                    &:before {
+                        content: '';
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 20rem;
+                        height: 20rem;
+                        margin-right: 20rem;
+                        background: url(../img/arrow.svg);
+                        background-size: 100%;
+                        transform: rotate(-90deg);
+                        @include screenW(pda){
+                            width: 14rem;
+                            height: 14rem;
+                            margin-right: 14rem;
+                        }
+                    }
+                }
+                &.m_goShopping {
+                    &:before {
+                        content: '';
+                        position: relative;
+                        top: -2rem;
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 20rem;
+                        height: 20rem;
+                        margin-right: 20rem;
+                        background: url(../img/favorite.svg);
+                        background-size: 100%;
+                        @include screenW(pda){
+                            width: 14rem;
+                            height: 14rem;
+                            margin-right: 14rem;
+                        }
+                    }
+                }
+
+                &.m_finishbtn {
+                    white-space: nowrap;
+                    width: 430rem;
+                    height: 72rem;
+                    font: 400 20rem/1 $pixelFont;
+
+                    @include screenW(pda){
+                        width: 80%;
+                        height: 40rem;
+                        font: 400 11rem/1 $pixelFont;
+                        @media (orientation: landscape){
+                            width: 30%;
+                            min-width: 250rem;
+                            height: 34rem;
+                        }
+                    }
+                }
+
+                &.m_newgame_btn {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+
+
+
+                    @include screenW(pda){
+                        position: absolute;
+                        bottom: 10rem;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        top: auto;
+                        @media (orientation: landscape){
+                            bottom: auto;
+                            top: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .b_promocode {
+            position: relative;
+            z-index: 10;
+            max-width: 600rem;
+
+            @include screenW(pda) {
+                width: 100%;
+                padding: 0 10rem;
+
+
+                &.m_passed {
+
+                    @media (orientation: landscape){
+                        max-width: 560rem;
+                        .b_promocode {
+                            &-wrapper {
+                                display: flex;
+                                flex-flow: row;
+                                align-items: start;
+                                justify-content: space-between;
+                                border-radius: 10px;
+                                padding: 10rem;
+
+                                .subtitle {
+                                    font-size: 13rem;
+                                    padding: 0;
+                                    margin-right: 10rem;
+                                    margin-bottom: 0;
+                                }
+
+
+                                .code {
+                                    &-text {
+                                        font-size: 46rem;
+                                    }
+                                    &-hint {
+                                        margin-top: 0;
+                                        font-size: 9rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+            &-wrapper {
+                position: relative;
+                padding: 35rem 20rem;
+                width: 100%;
+                border: 4px solid $blue;
+                border-radius: 30px;
+                background: #fff;
+
+                @include screenW(pda) {
+                    width: 100%;
+                    padding: 20rem;
+                    border-radius: 20px;
+                    @media (orientation: landscape){
+                        padding: 10rem 20rem;
+                    }
+                }
+
+                .title {
+                    color: $black;
+                    font-size: 40rem;
+
+                    @include screenW(pda){
+                        font-size: 20rem;
+                        display: block;
+                        @media (orientation: landscape){
+
+                            margin-bottom: 10rem;
+                        }
+                    }
+                }
+                .subtitle {
+                    color: $black;
+                    font-size: 20rem;
+                    margin-bottom: 20rem;
+
+                    @include screenW(pda) {
+                        font-size: 14rem;
+                        margin-bottom: 12rem;
+                    }
+                }
+
+                .code {
+                    position: relative;
+                    cursor: copy;
+
+                    &-text {
+                        font: 400 46rem/1 $megaFont;
+                        color: $blue;
+                        text-transform: uppercase;
+                        letter-spacing: 0.06em;
+
+                        @include screenW(pda) {
+                            font-size: 46rem;
+                        }
+                    }
+
+                    &-hint {
+                        position: relative;
+                        margin: 6rem 0 0;
+                        font: 400 10rem/1 $megaFont;
+                        color: $blue;
+                        letter-spacing: normal;
+                    }
+
+                    &-copiedNotice {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: #ffe3c8;
+                        border-radius: 10rem;
+                        border: 1px solid #ddd;
+                        font: 400 14rem / 1 arial;
+                        color: #777777;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: 0;
+                        transition: all 0.5s ease;
+
+                        &.show {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+            }
+
+            &-link {
+                position: relative;
+                top: 20rem;
+                font: 400 10rem/1 $megaFont;
+                color: $grey;
+                text-decoration: underline;
+                @include screenW(pda){
+                    @media (orientation: landscape){
+                        top: 7rem;
+                    }
+                }
+            }
+        }
+
+        .passed {
+            position: relative;
+            display: flex;
+            flex-flow: row;
+            align-items: start;
+            justify-content: center;
+            padding-bottom: 40rem;
+            @include screenW(pda){
+                padding-bottom: 20rem;
+            }
+
+            &-item {
+                display: inline-flex;
+                flex-flow: column;
+                font: 400 11rem/1.2 $pixelFont;
+                color: $peach;
+                align-items: center;
+                margin: 0 25rem;
+
+                strong {
+                    font: 400 36rem/1 $pixelFont;
+                    margin-bottom: 10rem;
+                }
+
+                @include screenW(pda){
+                    font: 400 9rem/1.2 $pixelFont;
+                    margin: 0 12rem;
+
+                    @media (orientation: landscape){
+                        flex-flow: row;
+                    }
+
+                    strong {
+                        font: 400 22rem/1 $pixelFont;
+                        margin-bottom: 5rem;
+                        @media (orientation: landscape){
+                            font: 400 26rem/1 $pixelFont;
+                            margin-bottom: 0;
+                            margin-right: 5rem;
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+    &-phone_rotate {
+        z-index: -1;
+        display: none;
+
+        @include screenW(pda){
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 1s $commonEasing;
+
+            &.show {
+                z-index: 1000;
+                opacity: 1;
+            }
+
+            @media (orientation: landscape){
+                display: flex;
+            }
+
+            .subtitle {
+                text-align: center;
+                max-width: 60%;
+            }
+            .phone_rotate {
+                position: relative;
+                width: 120rem;
+                height: 120rem;
+                margin: 20rem auto;
+                background: url(../img/phone_rotate.svg) no-repeat 50% 50%;
+                background-size: contain;
+            }
+            .rotate_part {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: column;
+            }
+
+            .scroll_part {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: column;
+                display: none;
+
+
+            }
+
+            &.m_scroll_hint {
+                .rotate_part {
+                    display: none;
+                }
+                .scroll_part {
+                    display: flex;
+
+                    .subtitle {
+                        text-align: center;
+                        max-width: 60%;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 100;
+                        width: 360rem;
+                        height: 40vh;
+                        margin: auto;
+                        padding: 0 20rem;
+                        background: rgba(255, 255, 255, .8);
+                        display: flex;
+                        align-items: center;
+                        flex-flow: column;
+                        justify-content: center;
+
+                        .iphone_gobtn {
+                            position: relative;
+                            z-index: 1000;
+                            width: 160rem;
+                            height: 36rem;
+                            font-size: 16rem;
+                            margin: 10rem 0 0;
+
+                            // display: none;
+                            // &.show {
+                            //     display: flex;
+                            // }
+                        }
+
+                    }
+
+                    .iphone_hint {
+                        position: absolute;
+                        z-index: 1;
+                        top: 46rem;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: url(../img/game/ios_hint_hidebar.jpg) no-repeat 50% 50%;
+                        background-size: auto 100%;
+                    }
+                }
+            }
+
+        }
+    }
+
+    #_id_exitFullscreenBtn {
+        display: none;
+
+        @include screenW(pda){
+            &.show {
+                position: absolute;
+                z-index: 100;
+                display: block;
+                top: 44rem;
+                right: 30rem;
+                width: 40rem;
+                height: 40rem;
+
+                span {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: 3rem;
+                    margin: auto;
+                    background: transparent;
+                    transition: all 0.2s ease;
+                    &:before, &:after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        width: 100%;
+                        height: 3rem;
+                        opacity: 1;
+                        background: #fff;
+                        transform: rotate(0deg);
+                        transition: all 0.2s ease;
+                    }
+                    &:before {
+                        top: 0;
+                        transform: rotate(45deg);
+                    }
+                    &:after {
+                        bottom: 0;
+                        transform: rotate(-45deg);
+                    }
+                }
+
+            }
+        }
+    }
+
+    #_id_canvas_frame {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: -100%;
+
+        &.show {
+            opacity: 1;
+            position: relative;
+            left: 0;
+        }
+
+        @include screenW(pda){
+            height: 80vh;
+            @media (orientation: landscape){
+                height: 100vh;
+            }
+        }
+
+    }
+}

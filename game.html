@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+    <title>MegaMa</title>
+
+    <link data-meta="ssr" rel="shortcut icon" type="image/png" href="https://megamarket.ru/static/dist/images/favicon.54db98.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="16x16" href="https://megamarket.ru/static/dist/images/favicon-16x16.2289a6.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="32x32" href="https://megamarket.ru/static/dist/images/favicon-32x32.e2734e.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="96x96" href="https://megamarket.ru/static/dist/images/favicon-96x96.239d7b.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="128x128" href="https://megamarket.ru/static/dist/images/favicon-128x128.046cf1.png">
+    <link data-meta="ssr" rel="icon" type="image/png" sizes="196x196" href="https://megamarket.ru/static/dist/images/favicon-196x196.42ed6e.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=block" rel="stylesheet">
+
+    <meta name="mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <link rel="stylesheet" href="./css/static_page.css">
+    <link rel="stylesheet" href="./css/game_style.css">
+
+</head>
+<body>
+
+    <div id="root" class="b_root" data-current="_id_game">
+
+        <div id="_id_curtain">
+            <div class="loader">
+                <span class="loader-text">Загрузка...</span>
+                <div class="loader-indicator"><span></span></div>
+            </div>
+        </div>
+
+        <div class="b_header" id="_id_header" >
+            <a href="./" class="b_header-item m_mmlogo">
+                <img src="./img/mm_logo.svg" alt="">
+            </a>
+            <a href="https://www.baby.ru/" class="b_header-item m_babyrulogo" target="_blank">
+                <img src="./img/babyru_logo.svg" alt="">
+            </a>
+
+            <div class="b_header-menubtn">
+                <span></span>
+            </div>
+
+            <div class="b_header-menu">
+
+                <div class="b_header-menu-wrapper">
+                    <a href="./game.html" data-dest="_id_game" class="b_header-menu-item active">
+                        Начать игру
+                    </a>
+                    <a href="./gifts.html" data-dest="_id_gifts" class="b_header-menu-item">
+                        Что можно выиграть
+                    </a>
+                    <a href="./lifehacks.html" data-dest="_id_lifeHacks" class="b_header-menu-item">
+                        Гид по лайфхакам <span class="mbdn">от МегаМаркет</span>
+                    </a>
+                    <a href="./rating.html" data-dest="_id_ratingblock" class="b_header-menu-item">
+                        Турнирная таблица
+                    </a>
+
+                    <div class="b_header-menu-wrapper-bg"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="_id_game" data-level="1" class="b_level m_level1 m_loading">
+
+            <div class="b_level-curtain"></div>
+
+            <div class="b_level-popupWindow b_level-startwindow " id="_id_start_window">
+
+                <div class="b_level-startwindow-intro">
+                    <div class="bg"></div>
+                    <div class="label">
+                        Виртуальная игра
+                    </div>
+
+                    <div class="b_level-startwindow-index " id="_id_introduction">
+
+                        <div class="title">
+                            <span>Мега</span><span>Ма!</span>
+                        </div>
+
+                        <div class="subtitle">
+                            Помоги маме справиться с онлайн-шопингом! Пройди полосу препятствий, собирая нужные товары и бонусы от Мегамаркета
+                        </div>
+
+                        <div class="introduction">
+                            <div class="introduction-item">
+                                <div class="introduction-rules m_uilegend">
+                                    <div class="lady">
+                                        <img src="./img/game/canvas/lady/4.png" alt="">
+                                    </div>
+                                    <div class="pushbtn">жми</div>
+                                    <div class="fallObj">
+                                        <img src="./img/game/canvas/fall/lv1_fall2.png" alt="">
+                                    </div>
+                                    <div class="scoreboard">
+                                        <div class="item m_lives">
+                                            <span class="item-cnt">x3</span>
+                                        </div>
+                                        <div class="item m_score">
+                                            <span class="item-cnt">x150</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="introduction-text m_desktop_only">
+                                    Перепрыгивай препятствия при помощи стрелок на клавиатуре. У тебя будет три попытки дойти до конца уровня
+                                </div>
+                                <div class="introduction-text m_mobile_only">
+                                    Перепрыгивай препятствия при помощи кнопки прыжка. У тебя будет три попытки дойти до конца уровня
+                                </div>
+                            </div>
+                            <div class="introduction-item">
+                                <div class="introduction-rules m_costlegend">
+                                    <div class="costitem">
+                                        <div class="icon m_coin"></div>
+                                        <div class="text"><span>=</span><span>5</span><span>баллов&nbsp;</span></div>
+                                    </div>
+                                    <div class="costitem">
+                                        <div class="icon m_50"></div>
+                                        <div class="text"><span>=</span><span>20</span><span>баллов</span></div>
+                                    </div>
+                                    <div class="costitem">
+                                        <div class="icon m_bonus"></div>
+                                        <div class="text"><span>=</span><span>30</span><span>баллов</span></div>
+                                    </div>
+                                </div>
+                                <div class="introduction-text">
+                                    Собирай монеты, предметы и скидки, получай за них баллы и выигрывай призы от Мегамаркета
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="b_level-startwindow-registration " id="_id_registration">
+                        <div class="subtitle">
+                            Чтобы сохранить прогресс и получить шанс выиграть приз,<br/>заполните свои данные:
+                        </div>
+                        <div class="form" id="_id_registration_form">
+                            <div class="form-row">
+                                <div class="form-input">
+                                    <input type="text" name="name" data-type="text" data-required="true">
+                                    <label>Имя</label>
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="lastname" data-type="text" data-required="true">
+                                    <label>Фамилия</label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-input">
+                                    <input type="text" name="phone" data-type="phone" data-required="true">
+                                    <label>Телефон</label>
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="mail" data-type="mail" data-required="true">
+                                    <label>E-mail</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="b_level-startwindow-continue" id="_id_continue_the_game">
+                        <div class="b_level-startwindow-continue-title">
+                            <p>
+                                Вы остановились на <span class="b_level-startwindow-continue-level">3</span> уровне
+                            <p>
+                                и накопили <span class="b_level-startwindow-continue-score">680</span> очков
+                        </div>
+
+                        <div class="subtitle">
+                            Желает продолжить или начать заново?
+                        </div>
+
+                        <div class="startbtn">
+                            <button id="_id_startNewGame">начать заново</button>
+                            <button id="_id_startLastGame">продолжить</button>
+                        </div>
+                    </div>
+
+                    <div class="startbtn">
+                        <button id="_id_startGameNextMobBtn">далее</button>
+                        <button id="_id_startGameBtn">начать</button>
+                    </div>
+
+                </div>
+
+                <div class="b_level-startwindow-controller-left"></div>
+                <div class="b_level-startwindow-controller-right"></div>
+            </div>
+
+            <div class="b_level-popupWindow b_level-phone_rotate " id="_id_phone_rotate">
+                <div class="rotate_part">
+                    <div class="subtitle">Для начала игры переверни устройство горизонтально</div>
+                    <div class="phone_rotate"></div>
+                </div>
+                <div class="scroll_part">
+                    <div class="subtitle">
+                        Для большего удобства скройте панель браузера
+                        <div id="_id_iphone_gobtn" class="iphone_gobtn cmnbtn">go</div>
+                    </div>
+                    <div class="iphone_hint"></div>
+
+                </div>
+
+
+            </div>
+
+            <div class="b_level-popupWindow b_level-countdown " id="_id_countdown_window">
+                <div class="b_level-countdown-context">
+                    <div class="label">Уровень 1</div>
+                    <div class="title">«Встречаем малыша»</div>
+                    <div class="bonus">
+                        <div class="bonus-item">
+                            <img src="./img/game/canvas/bonus/lv1_1_prize_x2.png" alt="">
+                        </div>
+                        <div class="bonus-item">
+                            <img src="./img/game/canvas/bonus/lv1_2_prize_x2.png" alt="">
+                        </div>
+                        <div class="bonus-item">
+                            <img src="./img/game/canvas/bonus/lv1_3_prize_x2.png" alt="">
+                        </div>
+                        <div class="bonus-item">
+                            <img src="./img/game/canvas/bonus/lv_50_sale_prize_x2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="countdown">
+                    <div class="countdown-title">
+                        Старт через
+                    </div>
+                    <div class="countdown-counter">
+                        03
+                    </div>
+                </div>
+            </div>
+
+            <div class="b_level-popupWindow b_level-finishwindow " id="_id_finish_window">
+
+            </div>
+
+
+            <!-- <div id="frame_wrapper"> -->
+                <iframe id="_id_canvas_frame" src="./level1_content.html" name="level1Canvas" frameborder="0"></iframe>
+            <!-- </div> -->
+
+            <div id="_id_exitFullscreenBtn"><span></span></div>
+
+        </div>
+
+        <div class="b_erid_info">
+            <div class="info">
+                Реклама ООО «МАРКЕТПЛЕЙС» (агрегатор) (ОГРН: 1167746803180), юридический адрес: 105082, г. Москва, ул. Спартаковская площадь, д. 16/15, стр. 6
+            </div>
+            <div class="erid">
+                ERID: 111111111111
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script type="module" >
+
+        // для передачи данных между уровнями использовать localStorage и куки для идентификации
+
+        // import {rootControl} from './js/staticpage_control.js';
+        // rootControl(root);
+
+        import {levelControl} from './js/game_control.js';
+        let level = document.getElementById('_id_game');
+        levelControl(level);
+
+
+    </script>
+
+
+</body>
+</html>
