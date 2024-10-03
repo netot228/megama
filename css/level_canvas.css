@@ -180,6 +180,16 @@ body {
   background-size: auto 100%;
   min-width: 200%;
 }
+#canvasBackground.level1:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(180deg, #27005a 17%, #27005A00);
+  opacity: 0.15;
+}
 #canvasBackground.level2 {
   background: url("../img/game/canvas/bg/lv2_bg.png") repeat-x 0 0;
   background-size: auto 100%;
@@ -192,6 +202,16 @@ body {
   background: url("../img/game/canvas/bg/lv4_bg.png") repeat-x 0 0;
   background-size: auto 100%;
 }
+#canvasBackground.level4:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(180deg, #27005a 32%, #27005A00 75%);
+  opacity: 0.15;
+}
 #canvasBackground.level5 {
   background: url("../img/game/canvas/bg/lv5_bg.png") repeat-x 0 0;
   background-size: auto 100%;
@@ -203,8 +223,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(180deg, rgba(39, 0, 90, 0.5) 32%, #27005A00);
-  opacity: 0.7;
+  background-image: linear-gradient(180deg, #27005a 0%, #27005A00);
+  opacity: 0.15;
 }
 
 #canvasRunBtn {

@@ -44,6 +44,12 @@ function deleteCookie(name){
     setCookie(name, null, { expires: -1 })
 }
 
+export const endPoints = {
+    REGISTRATION_ENDPOINT: '',
+    SUBMIT_SCORE: '',
+    RATING: './js/ratingObject.json'
+}
+
 export function addUserDataFromForm(form, callback){
     let validation = true;
     let inputs = form.querySelectorAll('input');
@@ -67,6 +73,21 @@ export function addUserDataFromForm(form, callback){
 
     if(validation){
         // если валидация пройдена, здесь отправляем данные на сервер
+            let fromData = {
+                userId: localStorage.userId,
+                userName: localStorage.user_name,
+                userLastname: localStorage.user_lastname,
+                userMail: localStorage.user_mail,
+                userPhone: localStorage.user_phone
+            }
+            fetch(endPoints.REGISTRATION_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body:  JSON.stringify(fromData)
+            })
+
         // и переводим на игру
         if(callback){
             callback();
@@ -132,7 +153,7 @@ export function rootControl(root){
             }
 
         // fetch for rating
-            let getRatingJsonUrl = './js/ratingObject.json';
+            let getRatingJsonUrl = endPoints.RATING;
 
         if(!getCookie('holdMamaStorage')){
             localStorage.clear();
@@ -259,8 +280,7 @@ export function rootControl(root){
                                 userName.className = 'item-name';
 
                                 //Добавить: если id юзера совпадает с текущим пометить, что это он
-                                // if(userArr[userNum].userid==window.__megama.userId)
-                                if(userNum==5){
+                                if(userArr[userNum].userid==localStorage.userId){
                                     userName.innerHTML = userArr[userNum].name + ' <span>(это вы)</span>';
                                     userItem.classList.add('current');
                                 } else {

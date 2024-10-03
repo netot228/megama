@@ -148,17 +148,17 @@ export function goLevel(level){
             if(allCanvasImagesSatus>=100){
 
                 console.log('allCanvasImagesSatus loaded');
-                window.cancelAnimationFrame(checkCanvasImageLoading);
+                cancelAnimationFrame(checkCanvasImageLoading);
 
                 drawObj();
                 ladyRun();
                 stopAllAnimation = false;
 
             } else {
-                allCanvasImagesLoading = window.requestAnimationFrame(checkCanvasImageLoading);
+                allCanvasImagesLoading = requestAnimationFrame(checkCanvasImageLoading);
             }
         }
-        let allCanvasImagesLoading = window.requestAnimationFrame(checkCanvasImageLoading);
+        let allCanvasImagesLoading = requestAnimationFrame(checkCanvasImageLoading);
 
     // preload all image, set Stopflag for animation before all images upload
 
@@ -242,11 +242,11 @@ export function goLevel(level){
 
             if(stopAllAnimation) return;
 
-            if(!levelObjAnimation){
-                levelObjAnimation = window.requestAnimationFrame(drawObj);
-            }
+            // if(!levelObjAnimation){
+            //     levelObjAnimation = requestAnimationFrame(drawObj);
+            // }
             if(!canvasBgAnimation){
-                canvasBgAnimation = window.requestAnimationFrame(bgMove);
+                canvasBgAnimation = requestAnimationFrame(moveAreaAndObj);
             }
 
             if(!jumpTimeStart){
@@ -326,7 +326,7 @@ export function goLevel(level){
                     jumpDirection = null;
                     jumpTimeStart = null;
 
-                    window.cancelAnimationFrame(ladyJumpingFlag);
+                    cancelAnimationFrame(ladyJumpingFlag);
                     ladyJumpingFlag = null;
                     ladyAnimation = setTimeout(ladyRun, 48);
                 }
@@ -341,7 +341,7 @@ export function goLevel(level){
             let fallDownSlide       = 0;
 
             clearTimeout(ladyAnimation);
-            window.cancelAnimationFrame(ladyJumpingFlag);
+            cancelAnimationFrame(ladyJumpingFlag);
             ladyAnimation = null;
             stopAllAnimation = true;
 
@@ -390,7 +390,7 @@ export function goLevel(level){
                 } else {
                     lady.posYDyn = y;
                     y = null;
-                    window.cancelAnimationFrame(ladyFallDownFlag);
+                    cancelAnimationFrame(ladyFallDownFlag);
                     ladyFallDownFlag = null;
                     clearMoving();
                     fallDownCallback();
@@ -398,7 +398,7 @@ export function goLevel(level){
                 }
             }
 
-            ladyFallDownFlag = window.requestAnimationFrame(fallAnimation);
+            ladyFallDownFlag = requestAnimationFrame(fallAnimation);
 
         }
 
@@ -608,9 +608,7 @@ export function goLevel(level){
             })
 
             objStartPos = objStartPos + shift;
-            if(ladyAnimation || ladyJumpingFlag || ladyFallDownFlag){
-                levelObjAnimation = window.requestAnimationFrame(drawObj);
-            }
+
 
         }
 
@@ -625,12 +623,9 @@ export function goLevel(level){
         let bgLeft = 0;
         let canvasBgAnimation = null;
 
-        let prevTime = 0;
-        function bgMove(timestamp){
-            bgLeft = bgLeft + shift;
 
-            console.log(`timing :   ${timestamp-prevTime}`);
-            prevTime = timestamp;
+        function bgMove(){
+            bgLeft = bgLeft + shift;
 
             if(finishline.getBoundingClientRect().left<lady.posX + (lady.width/2)) {
                 console.log('finish');
@@ -643,14 +638,33 @@ export function goLevel(level){
                 }
 
                 canvasBg.style.left = (-1)*(bgLeft) + 'px';
-
-                if(bgLeft<canvasBgWidth + document.documentElement.clientWidth){
-                    canvasBgAnimation = window.requestAnimationFrame(bgMove);
-                }
             }
         }
 
     // background move
+
+        let prevTime = 0;
+        function moveAreaAndObj(time){
+
+            console.log(`timing :   ${time-prevTime}`);
+
+            // if(time-prevTime<9){
+            //     requestAnimationFrame(moveAreaAndObj);
+            //     return;
+            // } else {
+                prevTime = time;
+            // }
+
+            drawObj();
+            bgMove();
+
+            if( (bgLeft<canvasBgWidth + document.documentElement.clientWidth)
+                && (ladyAnimation || ladyJumpingFlag || ladyFallDownFlag))
+
+            {
+                canvasBgAnimation = requestAnimationFrame(moveAreaAndObj);
+            }
+        }
 
     // service funcs
 
@@ -690,17 +704,17 @@ export function goLevel(level){
             clearTimeout(ladyAnimation);
             ladyAnimation = null;
 
-            window.cancelAnimationFrame(levelObjAnimation);
-            levelObjAnimation = null;
+            // cancelAnimationFrame(levelObjAnimation);
+            // levelObjAnimation = null;
 
-            window.cancelAnimationFrame(canvasBgAnimation);
+            cancelAnimationFrame(canvasBgAnimation);
             canvasBgAnimation = null;
 
-            window.cancelAnimationFrame(ladyFallDownFlag);
+            cancelAnimationFrame(ladyFallDownFlag);
             ladyFallDownFlag = null;
 
             // clear all jump data
-            window.cancelAnimationFrame(ladyJumpingFlag);
+            cancelAnimationFrame(ladyJumpingFlag);
             ladyJumpingFlag = null;
             jumpDirection = null;
             jumpTimeStart = null;
@@ -821,8 +835,8 @@ export function goLevel(level){
 
                 ladyAnimation = setTimeout(()=>{
                     ladyRun();
-                    levelObjAnimation = window.requestAnimationFrame(drawObj);
-                    canvasBgAnimation = window.requestAnimationFrame(bgMove);
+                    // levelObjAnimation = requestAnimationFrame(drawObj);
+                    canvasBgAnimation = requestAnimationFrame(moveAreaAndObj);
                 }, 48);
 
             }
@@ -830,7 +844,7 @@ export function goLevel(level){
             function goJumpLady(){
                 if(ladyJumpingFlag || ladyFallDownFlag) return;
                 clearTimeout(ladyAnimation);
-                ladyJumpingFlag = window.requestAnimationFrame(ladyJump);
+                ladyJumpingFlag = requestAnimationFrame(ladyJump);
             }
 
             function rebuildCanvasElements(){

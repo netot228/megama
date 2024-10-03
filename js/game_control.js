@@ -1,6 +1,6 @@
 import {levelsDescription} from './levels_desc_obj.js';
 import {imageCollection} from './image_src_collect.js';
-import {addUserDataFromForm, formInputHolder} from './staticpage_control.js';
+import {addUserDataFromForm, formInputHolder, endPoints} from './staticpage_control.js';
 
 //detect mobile
 let isMobile = (function(){
@@ -622,18 +622,37 @@ export function levelControl(level){
                             quantity.className = 'passed-item';
                             quantity.innerHTML = `<strong>${window.__megama.score}</strong><span>количество<br/>набранных<br/>баллов</span>`;
 
-                        // сделать запрос, получить место в рейтинге
-                        let playerRating = 43; //
-
-                        let ratingPlace = document.createElement('div');
-                            ratingPlace.className = 'passed-item';
-                            ratingPlace.innerHTML = `<strong>${playerRating}</strong><span>место<br/>в турнирной<br/>таблице</span>`;
-
                         let eventDay = document.createElement('div');
                             eventDay.className = 'passed-item';
                             eventDay.innerHTML = `<strong>10</strong><span>декабря<br/>объявление<br/>победителей</span>`;
 
-                        passedBlock.append(quantity, ratingPlace, eventDay);
+                        let ratingPlace = document.createElement('div');
+                            ratingPlace.className = 'passed-item';
+
+                        // сделать запрос, получить место в рейтинге
+                        if(state=='gamePassed'){
+                            let fromData = {
+                                userId: localStorage.userId,
+                                userName: localStorage.user_name,
+                                userLastname: localStorage.user_lastname,
+                                userMail: localStorage.user_mail,
+                                userPhone: localStorage.user_phone,
+                                userScore: localStorage.score
+                            }
+                            fetch(endPoints.SUBMIT_SCORE, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json;charset=utf-8'
+                                },
+                                body:  JSON.stringify(fromData)
+                            })
+                            .then(resp=>resp.json())
+                            .then(json=>{
+                                ratingPlace.innerHTML = `<strong>${json.ratingPosition}</strong><span>место<br/>в турнирной<br/>таблице</span>`;
+                            })
+                            passedBlock.append(quantity, ratingPlace, eventDay);
+                        }
+
                     }
 
                     if(state=='win'){
@@ -858,6 +877,8 @@ export function levelControl(level){
             if(!finishWindow.classList.contains('show')){
                 finishWindow.classList.add('show');
             }
+
+
 
         }
 
