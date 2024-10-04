@@ -30,6 +30,13 @@ export const imageCollection = {
         './img/static_pages/rating-lefthand_and_prize.png',
         './img/static_pages/rating-righthand_and_prize.png',
 
+        './img/static_pages/lf_coin_couple.png',
+        './img/static_pages/lf_coin1.png',
+        './img/static_pages/lf_coin2.png',
+        './img/static_pages/percent_l.png',
+        './img/static_pages/percent_r.png',
+        // './img/static_pages/finger_hand2.png',
+
     ],
     staticPageX2: [
 
@@ -63,7 +70,12 @@ export const imageCollection = {
         './img/static_pages/rating-lefthand_and_prize_x2.png',
         './img/static_pages/rating-righthand_and_prize_x2.png',
 
-
+        './img/static_pages/lf_coin_couple.png',
+        './img/static_pages/lf_coin1.png',
+        './img/static_pages/lf_coin2.png',
+        './img/static_pages/percent_l.png',
+        './img/static_pages/percent_r.png',
+        './img/static_pages/finger_hand2.png'
 
     ],
     canvas: [

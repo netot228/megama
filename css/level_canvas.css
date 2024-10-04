@@ -17,6 +17,11 @@ html * {
 html {
   font-size: 0.0520833333vmax;
 }
+@media screen and (min-width: 1930px) {
+  html {
+    font-size: 1px;
+  }
+}
 @media screen and (max-width: 1023px) {
   html {
     font-size: 0.28vmin;

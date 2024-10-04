@@ -647,13 +647,7 @@ export function goLevel(level){
         function moveAreaAndObj(time){
 
             console.log(`timing :   ${time-prevTime}`);
-
-            // if(time-prevTime<9){
-            //     requestAnimationFrame(moveAreaAndObj);
-            //     return;
-            // } else {
-                prevTime = time;
-            // }
+            prevTime = time;
 
             drawObj();
             bgMove();

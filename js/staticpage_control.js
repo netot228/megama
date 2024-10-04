@@ -182,7 +182,7 @@ export function rootControl(root){
                 img.src = el;
                 img.onload = function(){
                     loadingStatus = loadingStatus + loaderPart;
-                    if(loadingStatus>=100){
+                    if(Math.ceil(loadingStatus)>=100){
                         loadingStatus=100;
                     }
                     loader.style.width = loadingStatus + '%';
@@ -496,12 +496,12 @@ export function rootControl(root){
                         if(block.getBoundingClientRect().top<(document.documentElement.clientHeight - document.documentElement.clientHeight*0.2)){
                             if(!block.classList.contains('show')){
                                 block.classList.add('show');
-                                if(i>1 && fingerHack){
-                                    if(!fingerHack.classList.contains('providential')){
-                                        fingerHack.classList.add('providential')
-                                    }
-                                    fingerHack.classList.toggle('fingerCheck')
-                                }
+                                // if(i>1 && fingerHack){
+                                //     if(!fingerHack.classList.contains('providential')){
+                                //         fingerHack.classList.add('providential')
+                                //     }
+                                //     fingerHack.classList.toggle('fingerCheck')
+                                // }
                             }
 
                         }

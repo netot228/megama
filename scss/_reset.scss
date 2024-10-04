@@ -19,6 +19,9 @@ html {
     // font-size: 10px; // anchor for rem
     // font-size: 0.0520833333vw; // anchor for rem
     font-size: 0.0520833333vmax; // anchor for rem
+    @media screen and (min-width: 1930px) {
+        font-size: 1px;
+    }
     @media screen and (max-width: 1023px) {
         font-size: 0.28vmin;
         // font-size: 1px;
