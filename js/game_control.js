@@ -737,9 +737,9 @@ export function levelControl(level){
                             promocodeSubTitle.className = 'subtitle';
 
                             if(state=='gamePassed'){
-                                promocodeSubTitle.innerHTML = `У нас для вас кое-что есть!<br/>Промокод на скидку 1000 ₽ на первую покупку от 5000 ₽ на МегаМаркете.`;
+                                promocodeSubTitle.innerHTML = `У нас для вас кое-что есть!<br/>Промокод на скидку 1000 ₽ на первую покупку от 5000 ₽ на Мегамаркете.`;
                             } else {
-                                promocodeSubTitle.innerHTML = `Промокод на скидку 1000 ₽ на первую покупку от 5000 ₽ на МегаМаркете.`;
+                                promocodeSubTitle.innerHTML = `Промокод на скидку 1000 ₽ на первую покупку от 5000 ₽ на Мегамаркете.`;
                             }
 
 

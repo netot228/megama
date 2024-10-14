@@ -154,16 +154,16 @@ body {
     min-width: 200%;
 
     &.level1 {
-        &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: linear-gradient(180deg, rgba(39,0,90,1) 17%, #27005A00 );
-            opacity: .15;
-        }
+        // &:before {
+        //     content: '';
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     background-image: linear-gradient(180deg, rgba(39,0,90,1) 17%, #27005A00 );
+        //     opacity: .15;
+        // }
     }
 
     &.level2 {
@@ -177,32 +177,32 @@ body {
     &.level4 {
         background: url('../img/game/canvas/bg/lv4_bg.png') repeat-x 0 0;
         background-size: auto 100%;
-        &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: linear-gradient(180deg, rgba(39,0,90,1) 32%, #27005A00 75%);
-            opacity: .15;
-        }
+        // &:before {
+        //     content: '';
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     background-image: linear-gradient(180deg, rgba(39,0,90,1) 32%, #27005A00 75%);
+        //     opacity: .15;
+        // }
     }
     &.level5 {
         background: url('../img/game/canvas/bg/lv5_bg.png') repeat-x 0 0;
         background-size: auto 100%;
     }
 
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: linear-gradient(180deg, rgba(39,0,90,1) 0%, #27005A00 );
-        opacity: .15;
-    }
+    // &:before {
+    //     content: '';
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     background-image: linear-gradient(180deg, rgba(39,0,90,1) 0%, #27005A00 );
+    //     opacity: .15;
+    // }
 
 }
 

@@ -1356,7 +1356,7 @@ body {
         font: 400 70rem/1 $megaFont;
 
         @include screenW(pda) {
-            font-size: 40rem;
+            font-size: 38rem;
             margin-bottom: 10rem;
         }
     }
@@ -2214,13 +2214,13 @@ body {
                                 align-self: end;
                                 margin: 0 20rem 0;
                                 width: auto;
-                                max-height: 48px;
+                                max-height: 40rem;
                                 line-height: 0.8;
                                 display: flex;
                                 align-items: center;
                                 justify-content: center;
-                                font-size: 38rem;
-                                padding-top: 3rem;
+                                font-size: 30rem;
+                                padding-top: 4rem;
                             }
 
                         }
@@ -2315,9 +2315,10 @@ body {
                                 align-self: flex-start;
                                 left: 0;
                                 margin: 0 0 0 20px;
-                                font-size: 35rem;
+                                font-size: 30rem;
                                 width: auto;
-                                padding-top: 3rem;
+                                max-height: 40rem;
+                                padding-top: 4rem;
                             }
                         }
 
@@ -2419,6 +2420,7 @@ body {
                                 margin: 5% 12% 3% 0;
                                 font-size: 30rem;
                                 width: auto;
+                                max-height: 40rem;
                                 padding-top: 4rem;
                             }
                         }
@@ -2573,6 +2575,10 @@ body {
                                 position: absolute;
                                 left: 4%;
                                 transform: scale(1, 1) rotate(-10deg);
+
+                                @include screenW(pda){
+                                    top: 32%;
+                                }
                             }
 
                         }
@@ -2600,7 +2606,7 @@ body {
                                 position: absolute;
                                 left: 0%;
                                 right: auto;
-                                bottom: 25%;
+                                bottom: 12%;
                                 z-index: 100;
                                 transform: scale(1.2);
                                 padding-left: 45rem;
@@ -2926,8 +2932,13 @@ body {
                 // width: calc(100% - 94px);
                 width: 100%;
                 padding: 0 20rem;
-                font: 400 16rem/1.5 $megaFont;
+                font: 400 20rem/1.5 $megaFont;
                 color: $black;
+
+                @include screenW(pda){
+                    font-size: 15rem;
+                    line-height: 20rem;
+                }
 
                 p+p {
                     margin-top: 10rem;
