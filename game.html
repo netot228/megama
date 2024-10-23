@@ -12,9 +12,9 @@
     <link data-meta="ssr" rel="icon" type="image/png" sizes="128x128" href="https://megamarket.ru/static/dist/images/favicon-128x128.046cf1.png">
     <link data-meta="ssr" rel="icon" type="image/png" sizes="196x196" href="https://megamarket.ru/static/dist/images/favicon-196x196.42ed6e.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=block" rel="stylesheet"> -->
 
     <meta name="mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
@@ -76,67 +76,174 @@
 
                 <div class="b_level-startwindow-intro">
                     <div class="bg"></div>
-                    <div class="label">
-                        Виртуальная игра
-                    </div>
 
                     <div class="b_level-startwindow-index " id="_id_introduction">
 
-                        <div class="title">
-                            <span>Мега</span><span>Ма!</span>
-                        </div>
+                        <div id="_id_introduction_desc">
 
-                        <div class="subtitle">
-                            Помоги маме справиться с онлайн-шопингом! Пройди полосу препятствий, собирая нужные товары и бонусы от Мегамаркета
-                        </div>
+                            <div class="label">
+                                Виртуальная игра
+                            </div>
 
-                        <div class="introduction">
-                            <div class="introduction-item">
-                                <div class="introduction-rules m_uilegend">
-                                    <div class="lady">
-                                        <img src="./img/game/canvas/lady/4.png" alt="">
+                            <div class="title">
+                                <span>Мега</span><span>Ма!</span>
+                            </div>
+
+                            <div class="subtitle">
+                                Помоги маме справиться с онлайн-шопингом! Пройди полосу препятствий, собирая нужные товары и бонусы от Мегамаркета
+                            </div>
+
+                            <div class="introduction">
+                                <div class="introduction-item">
+                                    <div class="introduction-text m_desktop_only">
+                                        <div class="item">Перепрыгивай препятствия при помощи стрелок на клавиатуре</div>
+                                        <div class="item">У тебя будет три попытки пройти уровень</div>
                                     </div>
-                                    <div class="pushbtn">жми</div>
-                                    <div class="fallObj">
-                                        <img src="./img/game/canvas/fall/lv1_fall2.png" alt="">
+                                    <div class="introduction-text m_mobile_only">
+                                        <div class="item">Перепрыгивай препятствия при помощи кнопки прыжка</div>
+                                        <div class="item">У тебя будет три попытки пройти уровень</div>
                                     </div>
-                                    <div class="scoreboard">
-                                        <div class="item m_lives">
-                                            <span class="item-cnt">x3</span>
+                                    <div class="introduction-rules m_uilegend">
+                                        <div class="lady">
+                                            <img src="./img/game/canvas/lady/4.png" alt="">
                                         </div>
-                                        <div class="item m_score">
-                                            <span class="item-cnt">x150</span>
+                                        <div class="pushbtn">жми</div>
+                                        <div class="fallObj">
+                                            <img src="./img/game/canvas/fall/lv1_fall2.png" alt="">
+                                        </div>
+                                        <div class="scoreboard">
+                                            <div class="item m_lives">
+                                                <span class="item-cross">x</span><span class="item-cnt">3</span>
+                                            </div>
+                                            <div class="item m_score">
+                                                <span class="item-cross">x</span><span class="item-cnt">150</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="introduction-text m_desktop_only">
-                                    Перепрыгивай препятствия при помощи стрелок на клавиатуре. У тебя будет три попытки дойти до конца уровня
-                                </div>
-                                <div class="introduction-text m_mobile_only">
-                                    Перепрыгивай препятствия при помощи кнопки прыжка. У тебя будет три попытки дойти до конца уровня
+                                <div class="introduction-item">
+                                    <div class="introduction-text">
+                                        <div class="item">Собирай монеты, предметы и скидки, получай за них баллы</div>
+                                        <div class="item">Выигрывай призы от Мегамаркета</div>
+                                    </div>
+                                    <div class="introduction-rules m_costlegend">
+                                        <div class="costitem">
+                                            <div class="icon m_coin"></div>
+                                            <div class="text"><span>→</span><span>5</span><span>баллов&nbsp;</span></div>
+                                        </div>
+                                        <div class="costitem">
+                                            <div class="icon m_50"></div>
+                                            <div class="text"><span>→</span><span>20</span><span>баллов</span></div>
+                                        </div>
+                                        <div class="costitem">
+                                            <div class="icon m_bonus"></div>
+                                            <div class="text"><span>→</span><span>30</span><span>баллов</span></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="introduction-item">
-                                <div class="introduction-rules m_costlegend">
-                                    <div class="costitem">
-                                        <div class="icon m_coin"></div>
-                                        <div class="text"><span>=</span><span>5</span><span>баллов&nbsp;</span></div>
+
+                            <div class="notice">
+                                <div class="notice-textblock">
+                                    <div class="notice-title">
+                                        Если у вас наблюдаются проблемы с производительностью игры, убедитесь что:
                                     </div>
-                                    <div class="costitem">
-                                        <div class="icon m_50"></div>
-                                        <div class="text"><span>=</span><span>20</span><span>баллов</span></div>
-                                    </div>
-                                    <div class="costitem">
-                                        <div class="icon m_bonus"></div>
-                                        <div class="text"><span>=</span><span>30</span><span>баллов</span></div>
+                                    <div class="notice-list">
+                                        <div class="item">открыто не более 10 вкладок в браузере</div>
+                                        <div class="item">у вас отключен впн</div>
+                                        <div class="item">не запущены ресурсоемкие приложения</div>
+                                        <div class="item">выключен режим энергосбережения</div>
                                     </div>
                                 </div>
-                                <div class="introduction-text">
-                                    Собирай монеты, предметы и скидки, получай за них баллы и выигрывай призы от Мегамаркета
+                            </div>
+
+                        </div>
+
+                        <div id="_id_introduction_mob">
+                            <div id="_id_mob_intro_slide1" class="intro-slide">
+                                <div class="label">
+                                    Виртуальная игра
+                                </div>
+                                <div class="title">
+                                    <span>Мега</span><span>Ма!</span>
+                                </div>
+
+                                <div class="subtitle">
+                                    Помоги маме справиться с онлайн-шопингом! Пройди полосу препятствий, собирая нужные товары и бонусы от Мегамаркета
+                                </div>
+
+                                <div class="introduction">
+                                    <div class="introduction-item">
+                                        <div class="introduction-text m_desktop_only">
+                                            <div class="item">Перепрыгивай препятствия при помощи стрелок на клавиатуре</div>
+                                            <div class="item">У тебя будет три попытки пройти уровень</div>
+                                        </div>
+                                        <div class="introduction-text m_mobile_only">
+                                            <div class="item">Перепрыгивай препятствия при помощи кнопки прыжка</div>
+                                            <div class="item">У тебя будет три попытки пройти уровень</div>
+                                        </div>
+                                        <div class="introduction-rules m_uilegend">
+                                            <div class="lady">
+                                                <img src="./img/game/canvas/lady/4.png" alt="">
+                                            </div>
+                                            <div class="pushbtn">жми</div>
+                                            <div class="fallObj">
+                                                <img src="./img/game/canvas/fall/lv1_fall2.png" alt="">
+                                            </div>
+                                            <div class="scoreboard">
+                                                <div class="item m_lives">
+                                                    <span class="item-cross">x</span><span class="item-cnt">3</span>
+                                                </div>
+                                                <div class="item m_score">
+                                                    <span class="item-cross">x</span><span class="item-cnt">150</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="_id_mob_intro_slide2" class="intro-slide">
+
+                                <div class="introduction-item">
+                                    <div class="introduction-text">
+                                        <div class="item">Собирай монеты, предметы и скидки, получай за них баллы</div>
+                                        <div class="item">Выигрывай призы от Мегамаркета</div>
+                                    </div>
+                                    <div class="introduction-rules m_costlegend">
+                                        <div class="costitem">
+                                            <div class="icon m_coin"></div>
+                                            <div class="text"><span>→</span><span>5</span><span>баллов&nbsp;</span></div>
+                                        </div>
+                                        <div class="costitem">
+                                            <div class="icon m_50"></div>
+                                            <div class="text"><span>→</span><span>20</span><span>баллов</span></div>
+                                        </div>
+                                        <div class="costitem">
+                                            <div class="icon m_bonus"></div>
+                                            <div class="text"><span>→</span><span>30</span><span>баллов</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="notice ">
+                                    <div class="notice-textblock">
+                                        <div class="notice-title">
+                                            Если у вас наблюдаются проблемы с&nbsp;производительностью игры, убедитесь что:
+                                        </div>
+                                        <div class="notice-list">
+                                            <div class="item">открыто не более 10 вкладок в браузере</div>
+                                            <div class="item">у вас отключен впн</div>
+                                            <div class="item">не запущены ресурсоемкие приложения</div>
+                                            <div class="item">выключен режим энергосбережения</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
 
                     <div class="b_level-startwindow-registration " id="_id_registration">
                         <div class="subtitle">
@@ -155,12 +262,12 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-input">
-                                    <input type="text" name="phone" data-type="phone" data-required="true">
-                                    <label>Телефон</label>
+                                    <input type="tel" name="phone" data-type="phone" data-required="true" >
+                                    <label>Телефон <span>+7 977 321 12 35</span></label>
                                 </div>
                                 <div class="form-input">
-                                    <input type="text" name="mail" data-type="mail" data-required="true">
-                                    <label>E-mail</label>
+                                    <input type="email" name="mail" data-type="mail" data-required="true">
+                                    <label>E-mail <span>name@domain.tdl</span></label>
                                 </div>
                             </div>
                         </div>
@@ -280,6 +387,12 @@
         let level = document.getElementById('_id_game');
         levelControl(level);
 
+
+
+
+        let a = 'https://www.gazeta.ru/social/2024/10/22/19956649.shtml?updated';
+
+        console.log(a.replace(/\?.*/, ''));
 
     </script>
 

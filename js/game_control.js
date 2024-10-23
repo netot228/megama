@@ -329,10 +329,10 @@ export function levelControl(level){
 
         }
 
-        if(startGameNextMobBtn){
+        if(isMobile && startGameNextMobBtn){
             startGameNextMobBtn.onclick = function(){
 
-                let introduction = startWindow.querySelector('.introduction');
+                let introduction = startWindow.querySelector('#_id_introduction_mob');
 
                 if(introduction){
 

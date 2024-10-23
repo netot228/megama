@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html * {
   padding: 0;
   margin: 0;
@@ -55,6 +56,13 @@ body {
   font-weight: 500;
   font-display: block;
   src: url(../fonts/MegaSansJ-Medium.woff2) format("woff2"), url(../fonts/MegaSansJ-Medium.woff.woff) format("woff");
+}
+@font-face {
+  font-family: "PressStart2P";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(../fonts/PressStart2P-Regular.woff2) format("woff2"), url(../fonts/PressStart2P-Regular.woff.woff) format("woff");
 }
 body {
   background: #F6EBFF;
@@ -274,14 +282,10 @@ body {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  padding: 30rem 0;
+  padding: 0;
   opacity: 1;
   transform: scale(1) translateX(0);
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-.b_level-startwindow-index .title span {
-  display: inline-block;
-  margin: 0 14rem;
 }
 .b_level-startwindow-index.hide {
   opacity: 0;
@@ -395,10 +399,30 @@ body {
     color: #2E2E2E;
   }
 }
+.b_level-startwindow-registration .form-input label span {
+  display: inline;
+  margin-left: 5px;
+  font-size: 0.8em;
+  letter-spacing: 0.025em;
+}
 .b_level-startwindow-registration .form-input input:focus + label,
 .b_level-startwindow-registration .form-input input.checked + label {
   top: -50rem;
   opacity: 0;
+}
+.b_level-startwindow-registration .form-input input:-webkit-autofill,
+.b_level-startwindow-registration .form-input input:-webkit-autofill:hover,
+.b_level-startwindow-registration .form-input input:-webkit-autofill:focus input:-webkit-autofill,
+.b_level-startwindow-registration .form-input textarea:-webkit-autofill,
+.b_level-startwindow-registration .form-input textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+.b_level-startwindow-registration .form-input select:-webkit-autofill,
+.b_level-startwindow-registration .form-input select:-webkit-autofill:hover,
+.b_level-startwindow-registration .form-input select:-webkit-autofill:focus {
+  border: 0;
+  -webkit-text-fill-color: #ссс;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(0, 174, 255, 0.04) 50%, rgba(255, 255, 255, 0) 51%, rgba(0, 174, 255, 0.03) 100%);
 }
 .b_level-startwindow-intro {
   position: relative;
@@ -408,7 +432,7 @@ body {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  padding: 30rem 0;
+  padding: 26rem 0;
 }
 @media screen and (max-width: 1023px) {
   .b_level-startwindow-intro {
@@ -418,6 +442,87 @@ body {
   }
   .b_level-startwindow-intro .bg {
     display: none;
+  }
+}
+.b_level-startwindow-intro #_id_introduction_mob {
+  display: none;
+}
+@media screen and (max-width: 1023px) {
+  .b_level-startwindow-intro #_id_introduction_mob {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    justify-content: start;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 20px;
+  }
+}
+@media screen and (max-width: 1023px) and (orientation: landscape) {
+  .b_level-startwindow-intro #_id_introduction_mob {
+    display: none;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .b_level-startwindow-intro #_id_introduction_mob .intro-slide {
+    display: inline-flex;
+    flex-flow: column;
+    flex-shrink: 0;
+    width: 100%;
+    margin-left: 1px;
+  }
+  .b_level-startwindow-intro #_id_introduction_mob .intro-slide:first-child {
+    margin-left: 0px;
+  }
+  .b_level-startwindow-intro #_id_introduction_mob .intro-slide .label {
+    top: -20px;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .b_level-startwindow-intro #_id_introduction_mob .notice {
+    width: 100%;
+    padding: 20rem 20rem 20rem 66rem;
+  }
+  .b_level-startwindow-intro #_id_introduction_mob .notice:before {
+    top: 20px;
+    left: 14rem;
+    bottom: auto;
+    width: 40rem;
+    height: 40rem;
+  }
+  .b_level-startwindow-intro #_id_introduction_mob .notice-title {
+    margin-bottom: 7px;
+    font-size: 13rem;
+  }
+  .b_level-startwindow-intro #_id_introduction_mob .notice-list {
+    flex-flow: column;
+    width: calc(100% + 50rem);
+    margin-left: -50rem;
+  }
+  .b_level-startwindow-intro #_id_introduction_mob .notice-list .item {
+    width: 100%;
+    margin-bottom: 2px;
+  }
+}
+.b_level-startwindow-intro #_id_introduction_desc {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3rem;
+}
+@media screen and (max-width: 1023px) {
+  .b_level-startwindow-intro #_id_introduction_desc {
+    display: none;
+  }
+}
+@media screen and (max-width: 1023px) and (orientation: landscape) {
+  .b_level-startwindow-intro #_id_introduction_desc {
+    display: flex;
   }
 }
 .b_level-startwindow-intro .bg {
@@ -438,7 +543,7 @@ body {
   top: -10rem;
   left: 0;
   right: 0;
-  height: 105rem;
+  height: 95rem;
   transform: scale(-1);
   background: url(../img/bitmap_btm_ornament.png) no-repeat 50% 0;
   background-size: auto 100%;
@@ -455,7 +560,7 @@ body {
   bottom: -10rem;
   left: 0;
   right: 0;
-  height: 105rem;
+  height: 95rem;
   background: url(../img/bitmap_btm_ornament.png) no-repeat 50% 0;
   background-size: auto 100%;
 }
@@ -467,8 +572,8 @@ body {
 }
 .b_level-startwindow-intro .label {
   position: absolute;
-  z-index: 5;
-  top: -18rem;
+  z-index: 10;
+  top: -44rem;
   left: 0;
   right: 0;
   height: 36rem;
@@ -484,7 +589,6 @@ body {
 }
 @media screen and (max-width: 1023px) {
   .b_level-startwindow-intro .label {
-    top: 0;
     position: relative;
     margin-bottom: 20rem;
     height: 34rem;
@@ -496,18 +600,26 @@ body {
 .b_level-startwindow-intro .title {
   position: relative;
   z-index: 5;
-  padding: 20rem;
-  border-radius: 10rem;
+  padding: 14rem 20rem 10rem;
+  border-radius: 20rem;
   background: #CA99F3;
   display: flex;
   align-items: center;
   justify-content: center;
-  font: 400 62rem/1 "Press Start 2P", sans-serif;
+  font: 400 62rem/1 "PressStart2P", sans-serif;
   color: #fff;
+  margin-bottom: 0;
+}
+.b_level-startwindow-intro .title span {
+  display: inline-block;
+  margin: 0 14rem;
+}
+.b_level-startwindow-intro .title span:last-child {
+  margin-right: 0;
 }
 @media screen and (max-width: 1023px) {
   .b_level-startwindow-intro .title {
-    font: 400 40rem/1 "Press Start 2P", sans-serif;
+    font: 400 40rem/1 "PressStart2P", sans-serif;
     letter-spacing: -0.2em;
     background: transparent;
     padding: 0px 0px;
@@ -523,7 +635,7 @@ body {
   font: 400 20rem/36rem "MegaSans", sans-serif;
   color: #2E2E2E;
   text-align: center;
-  margin-bottom: 30rem;
+  margin-bottom: 20rem;
   background: #CA99F3;
 }
 @media screen and (max-width: 1023px) {
@@ -541,7 +653,7 @@ body {
 .b_level-startwindow-intro .introduction {
   position: relative;
   z-index: 5;
-  width: 690rem;
+  width: 760rem;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -560,7 +672,7 @@ body {
 }
 .b_level-startwindow-intro .introduction-item {
   display: inline-flex;
-  width: 340rem;
+  width: 370rem;
   flex-shrink: 0;
   border: 3px dashed #8654CC;
   border-radius: 20px;
@@ -605,24 +717,26 @@ body {
 .b_level-startwindow-intro .introduction-rules.m_uilegend .lady {
   position: relative;
   display: inline-flex;
-  width: 143rem;
+  width: 128rem;
 }
 .b_level-startwindow-intro .introduction-rules.m_uilegend .lady:after {
   content: "";
   position: absolute;
   z-index: -1;
   bottom: -6rem;
-  left: 15%;
+  left: 30%;
   right: 0;
   width: 70%;
   margin: 0 auto;
-  height: 20rem;
+  height: 8rem;
   border-radius: 50%;
-  background: #242520;
+  background: #92715e;
   opacity: 0.5;
   mix-blend-mode: multiply;
 }
 .b_level-startwindow-intro .introduction-rules.m_uilegend .lady img {
+  position: relative;
+  top: 14px;
   display: block;
   width: 100%;
 }
@@ -644,8 +758,9 @@ body {
 .b_level-startwindow-intro .introduction-rules.m_uilegend .pushbtn {
   position: relative;
   padding-bottom: 50rem;
-  font: 400 22rem/1 "Press Start 2P", sans-serif;
+  font: 400 22rem/1 "PressStart2P", sans-serif;
   color: #FFE3C7;
+  text-transform: uppercase;
   text-shadow: 0 4rem 0 #8654CC;
   margin: 0 10rem;
 }
@@ -687,7 +802,7 @@ body {
 }
 .b_level-startwindow-intro .introduction-rules.m_uilegend .scoreboard {
   position: absolute;
-  top: 0;
+  top: 10px;
   right: 0;
   display: flex;
   flex-flow: column;
@@ -697,9 +812,13 @@ body {
   display: flex;
   flex-flow: row;
   align-items: center;
-  font: 400 14rem/1 "Press Start 2P", sans-serif;
+  font: 400 16rem/1 "PressStart2P", sans-serif;
+  text-shadow: 0 2px 0 #8654CC;
   color: #FFE3C7;
   margin-bottom: 5rem;
+}
+.b_level-startwindow-intro .introduction-rules.m_uilegend .scoreboard .item-cnt {
+  margin-left: 4rem;
 }
 .b_level-startwindow-intro .introduction-rules.m_uilegend .scoreboard .item:before {
   content: "";
@@ -707,8 +826,8 @@ body {
   position: relative;
   padding-left: 20rem;
   height: 20rem;
-  margin-right: 8rem;
-  font: 400 14rem/20rem "Press Start 2P", sans-serif;
+  margin-right: 6rem;
+  font: 400 14rem/20rem "PressStart2P", sans-serif;
   color: #FFE3C7;
 }
 .b_level-startwindow-intro .introduction-rules.m_uilegend .scoreboard .item.m_lives:before {
@@ -734,9 +853,7 @@ body {
   flex-flow: row nowrap;
   align-items: center;
   height: 50rem;
-}
-.b_level-startwindow-intro .introduction-rules.m_costlegend .costitem .icon {
-  margin-right: 10rem;
+  justify-content: center;
 }
 @media screen and (max-width: 1023px) {
   .b_level-startwindow-intro .introduction-rules.m_costlegend .costitem .icon {
@@ -785,14 +902,14 @@ body {
 }
 .b_level-startwindow-intro .introduction-rules.m_costlegend .costitem .text {
   display: inline-flex;
-  font: 400 22rem/1 "Press Start 2P", sans-serif;
+  font: 400 22rem/1 "PressStart2P", sans-serif;
   color: #FFE3C7;
   text-shadow: 0 4rem 0 #8654CC;
   flex-flow: row nowrap;
 }
 @media screen and (max-width: 1023px) {
   .b_level-startwindow-intro .introduction-rules.m_costlegend .costitem .text {
-    font: 400 18rem/1 "Press Start 2P", sans-serif;
+    font: 400 18rem/1 "PressStart2P", sans-serif;
   }
 }
 .b_level-startwindow-intro .introduction-rules.m_costlegend .costitem .text span {
@@ -800,9 +917,10 @@ body {
   margin-left: 10rem;
 }
 .b_level-startwindow-intro .introduction-text {
-  font: 400 14rem/21rem "MegaSans", sans-serif;
+  font: 400 13rem/15rem "MegaSans", sans-serif;
   color: #2E2E2E;
-  text-align: center;
+  display: block;
+  margin-bottom: 10rem;
 }
 @media screen and (max-width: 1023px) {
   .b_level-startwindow-intro .introduction-text {
@@ -824,6 +942,87 @@ body {
   .b_level-startwindow-intro .introduction-text.m_desktop_only {
     display: none;
   }
+}
+.b_level-startwindow-intro .introduction-text .item {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  margin: 0;
+}
+.b_level-startwindow-intro .introduction-text .item:before {
+  content: "";
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2E2E2E;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+.b_level-startwindow-intro .notice {
+  position: relative;
+  z-index: 5;
+  width: 760rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #CA99F3;
+  margin: 16px auto 0;
+  border: 3px dashed #8654CC;
+  border-radius: 20px;
+  padding: 14rem 26rem 14rem 90rem;
+}
+.b_level-startwindow-intro .notice:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30rem;
+  bottom: 0;
+  width: 46rem;
+  height: 46rem;
+  background: url(../img/notice_pixel.png) no-repeat 50% 50%;
+  background-size: contain;
+  margin: auto;
+}
+.b_level-startwindow-intro .notice-textblock {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
+.b_level-startwindow-intro .notice-title {
+  position: relative;
+  margin-bottom: 5px;
+  font: 400 15rem/13rem "MegaSans", sans-serif;
+  color: #6933B0;
+}
+.b_level-startwindow-intro .notice-list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  font: 400 13rem/15rem "MegaSans", sans-serif;
+  color: #2E2E2E;
+}
+.b_level-startwindow-intro .notice-list .item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 49%;
+  flex-shrink: 0;
+  margin: 0;
+}
+.b_level-startwindow-intro .notice-list .item:before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2E2E2E;
+  margin-right: 5px;
 }
 .b_level-startwindow-intro .startbtn {
   position: relative;
@@ -880,7 +1079,7 @@ body {
   width: 310rem;
   height: 72rem;
   background: #8654CC;
-  font: 400 20rem/1 "Press Start 2P", sans-serif;
+  font: 400 20rem/1 "PressStart2P", sans-serif;
   color: #FFE3C7;
   cursor: pointer;
   box-shadow: 0 6rem 0 #531A9D;
@@ -900,7 +1099,7 @@ body {
     width: 180rem;
     height: 48rem;
     box-shadow: 0 3rem 0 #531A9D;
-    font: 400 16rem/1 "Press Start 2P", sans-serif;
+    font: 400 16rem/1 "PressStart2P", sans-serif;
   }
   .b_level-startwindow-intro .startbtn button:active {
     background: #6933B0;
@@ -962,7 +1161,7 @@ body {
   display: inline-block;
   font-size: 1.2em;
   color: #FFE3C7;
-  font-family: "Press Start 2P", sans-serif;
+  font-family: "PressStart2P", sans-serif;
   margin: 0 5rem;
   vertical-align: middle;
 }
@@ -1038,7 +1237,7 @@ body {
   align-items: center;
 }
 .b_level-countdown .label {
-  font: 400 16rem/1 "Press Start 2P", sans-serif;
+  font: 400 16rem/1 "PressStart2P", sans-serif;
   color: #FFE3C7;
   margin-bottom: 30rem;
   text-transform: uppercase;
@@ -1163,7 +1362,7 @@ body {
   }
 }
 .b_level-countdown .countdown-counter {
-  font: 400 24rem/1 "Press Start 2P", sans-serif;
+  font: 400 24rem/1 "PressStart2P", sans-serif;
 }
 .b_level-countdown .countdown-startbtn {
   display: none;
@@ -1180,7 +1379,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font: 400 16rem/1 "Press Start 2P", sans-serif;
+    font: 400 16rem/1 "PressStart2P", sans-serif;
     text-transform: uppercase;
     color: #FFE3C7;
     border-radius: 60rem;
@@ -1235,7 +1434,7 @@ body {
   }
 }
 .b_level-finishwindow .quantity {
-  font: 400 16rem/1 "Press Start 2P", sans-serif;
+  font: 400 16rem/1 "PressStart2P", sans-serif;
   color: #FFE3C7;
   margin-bottom: 30rem;
   text-transform: uppercase;
@@ -1372,7 +1571,7 @@ body {
   width: 360rem;
   height: 72rem;
   background: #8654CC;
-  font: 400 20rem/1 "Press Start 2P", sans-serif;
+  font: 400 20rem/1 "PressStart2P", sans-serif;
   color: #FFE3C7;
   text-transform: uppercase;
   cursor: pointer;
@@ -1427,14 +1626,14 @@ body {
   content: "x";
   display: inline-block;
   vertical-align: middle;
-  font: 400 20rem/1 "Press Start 2P", sans-serif;
+  font: 400 20rem/1 "PressStart2P", sans-serif;
   color: #FFE3C7;
   text-transform: uppercase;
   margin-right: 20rem;
 }
 @media screen and (max-width: 1023px) {
   .b_level-finishwindow .buttons-item.m_close:before {
-    font: 400 14rem/1 "Press Start 2P", sans-serif;
+    font: 400 14rem/1 "PressStart2P", sans-serif;
     margin-right: 14rem;
   }
 }
@@ -1479,13 +1678,13 @@ body {
   white-space: nowrap;
   width: 430rem;
   height: 72rem;
-  font: 400 20rem/1 "Press Start 2P", sans-serif;
+  font: 400 20rem/1 "PressStart2P", sans-serif;
 }
 @media screen and (max-width: 1023px) {
   .b_level-finishwindow .buttons-item.m_finishbtn {
     width: 80%;
     height: 40rem;
-    font: 400 11rem/1 "Press Start 2P", sans-serif;
+    font: 400 11rem/1 "PressStart2P", sans-serif;
   }
 }
 @media screen and (max-width: 1023px) and (orientation: landscape) {
@@ -1671,18 +1870,18 @@ body {
 .b_level-finishwindow .passed-item {
   display: inline-flex;
   flex-flow: column;
-  font: 400 11rem/1.2 "Press Start 2P", sans-serif;
+  font: 400 11rem/1.2 "PressStart2P", sans-serif;
   color: #FFE3C7;
   align-items: center;
   margin: 0 25rem;
 }
 .b_level-finishwindow .passed-item strong {
-  font: 400 36rem/1 "Press Start 2P", sans-serif;
+  font: 400 36rem/1 "PressStart2P", sans-serif;
   margin-bottom: 10rem;
 }
 @media screen and (max-width: 1023px) {
   .b_level-finishwindow .passed-item {
-    font: 400 9rem/1.2 "Press Start 2P", sans-serif;
+    font: 400 9rem/1.2 "PressStart2P", sans-serif;
     margin: 0 12rem;
   }
 }
@@ -1693,13 +1892,13 @@ body {
 }
 @media screen and (max-width: 1023px) {
   .b_level-finishwindow .passed-item strong {
-    font: 400 22rem/1 "Press Start 2P", sans-serif;
+    font: 400 22rem/1 "PressStart2P", sans-serif;
     margin-bottom: 5rem;
   }
 }
 @media screen and (max-width: 1023px) and (orientation: landscape) {
   .b_level-finishwindow .passed-item strong {
-    font: 400 26rem/1 "Press Start 2P", sans-serif;
+    font: 400 26rem/1 "PressStart2P", sans-serif;
     margin-bottom: 0;
     margin-right: 5rem;
   }

@@ -488,8 +488,8 @@ export function goLevel(level){
 
 
                     let bonus   = bonusImagesCollect[el.id];
-                    let bonusW  = isMobile ? 60 : 100;
-                    let bonusH  = isMobile ? 60 : 100;
+                    let bonusW  = isMobile ? 80 : 100;
+                    let bonusH  = isMobile ? 80 : 100;
                     let bonusY  = isMobile ? 100 : 140;
 
                     if(xPos<ladyRightCorn && lady.posYDyn<bonusY && lady.styleLeft < (xPos + bonusW)){

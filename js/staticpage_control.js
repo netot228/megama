@@ -63,12 +63,44 @@ export function addUserDataFromForm(form, callback){
                 input.parentElement.classList.remove('alarm');
             }, 1500)
 
-        } else {
+        }
+        else if(input.type=='tel'){
+            console.dir(input.value);
+            let telNum = input.value.replace(/[^\d]/gi, '');
+
+            if(telNum.length<11){
+                validation = false;
+                input.parentElement.classList.add('alarm');
+
+                setTimeout(()=>{
+                    input.parentElement.classList.remove('alarm');
+                }, 1500)
+            }
+
+        }
+
+        else if(input.type=='email'){
+            console.dir(input.value);
+
+            if(!input.value.match(/^[A-Za-z0-9.]+@[A-Za-z0-9.]+\.[A-Za-z]{2,4}$/)){
+                validation = false;
+                input.parentElement.classList.add('alarm');
+
+                setTimeout(()=>{
+                    input.parentElement.classList.remove('alarm');
+                }, 1500)
+            }
+
+        }
+        else {
+
             if(input.name=='name'){
                 localStorage.userId = input.value + '_' + Math.floor(Math.random()*100000);
             }
+
             localStorage[`user_${input.name}`] = input.value;
         }
+
     })
 
     if(validation){
@@ -107,7 +139,132 @@ export function formInputHolder(form){
 
     function inputHolder(input){
         // add validation for phone && mail
-        input.addEventListener('blur', (e)=>{
+
+        input.addEventListener('change', e=>{
+
+            if(input.type=='tel'){
+
+                if(input.value.match(/[-_+.()^]/)){
+
+                    input.value.match(/[-_+.()^]/g).forEach(el=>{
+                        let re = new RegExp(`\\${el}`, 'g');
+                        input.value = input.value.replace(re, '');
+                    })
+
+                }
+                if(input.value.match(/\D/g)){
+                    input.value = input.value.replace(/\D/g, '');
+                }
+
+                if(input.value.at(0)==8){
+                    input.value = '+7' + input.value.slice(1);
+                } else if(Number.isInteger(Number(input.value.at(0)))){
+                    input.value = '+' + input.value;
+                }
+
+                if(input.value.length>12){
+                    input.value = input.value.slice(0,12);
+                }
+
+                if(input.value.match(/^\+\d/) && input.value.length>1){
+                    let inputValue = '';
+                    input.value.split('').forEach((el,i)=>{
+
+                        if((i==2 || i==5 || i==8 || i==10) && el!=' '){
+                            inputValue += ' ';
+                        }
+                        inputValue += el;
+
+                    })
+                    input.value = inputValue;
+                }
+            }
+        })
+
+        input.addEventListener('input', e=>{
+
+            if(e.data){
+
+                if(input.type=='tel'){
+
+                    if(input.value.length==1){
+
+                        if( e.data.match(/\D/) ||
+                            input.value.match(/\+|8|7/)
+                        ){
+                            input.value = '+7 ';
+                        }
+                        else if(input.value.match(/\d/)){
+                            input.value = input.value.replace(/\d/g, `+7 ${e.data}`);
+                        }
+                    }
+                    else if(e.data.match(/[\.\(\)\s\*\+]/)){
+                        input.value = input.value.slice(0, (input.value.length - 1));
+                    }
+                    else if(e.data.match(/\D/)){
+
+                        let re = new RegExp(`${e.data}`);
+                        input.value = input.value.replace(re, '');
+
+                    }
+
+                    if( input.value.length==6 ||
+                        input.value.length==10 ||
+                        input.value.length==13
+                    ){
+                        input.value = input.value + ' ';
+                    }
+                    else if(
+                        input.value.length==3 && input.value.at(2)!=' ' ||
+                        input.value.length==7 && input.value.at(6)!=' ' ||
+                        input.value.length==11 && input.value.at(10)!=' ' ||
+                        input.value.length==14 && input.value.at(13)!=' '
+                    ){
+
+                        input.value = input.value.slice(0, input.value.length-1) + ' ' + e.data;
+                    }
+
+                    if(input.value.length>16){
+                        input.value =  input.value.slice(0,16);
+                    }
+
+                } else if(input.type=='email'){
+
+                    if(e.data.match(/[^A-Za-z0-9\.@]/)){
+                        if(e.data.match(/\s/)){
+                            input.value = input.value.replace(/\s/g, '');
+                        }
+                        else if(e.data.match(/[-_+.()^]/)){
+                            let re = new RegExp(`\\${e.data}`, 'g');
+                            input.value = input.value.replace(re, '');
+                        }
+                        else {
+                            input.value = input.value.replace(e.data, '');
+                        }
+                    }
+                    let at = input.value.match(/@/g);
+                    if(input.value && at?.length>1){
+                        input.value = input.value.replace(/^([A-Za-z0-9.@]+)@([A-Za-z0-9.]*)$/, '$1$2');
+                    } else if(input.value.length==1 && (e.data=='@' || e.data=='.')){
+                        input.value = '';
+                    }
+
+                } else if(input.type=='text'){
+                    if(e.data.match(/[^A-Za-zА-Яа-я\s-]/)){
+
+                        if(e.data.match(/[_+.()^]/)){
+                            let re = new RegExp(`\\${e.data}`, 'g');
+                            input.value = input.value.replace(re, '');
+                        }
+                        else {
+                            input.value = input.value.replace(e.data, '');
+                        }
+                    }
+                }
+            }
+        })
+
+        input.addEventListener('blur', e=>{
             if(input.value!=''){
                 input.classList.add('checked');
             } else {
@@ -115,6 +272,7 @@ export function formInputHolder(form){
             }
         })
     }
+
     formInputFields.forEach(input=>{
         inputHolder(input);
     })

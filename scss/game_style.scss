@@ -252,17 +252,12 @@ body {
             flex-flow: column;
             align-items: center;
             justify-content: center;
-            padding: 30rem 0;
+            padding: 0;
             opacity: 1;
             transform: scale(1) translateX(0);
             transition: all 0.5s $commonEasing;
 
-            .title {
-                span {
-                    display: inline-block;
-                    margin: 0 14rem;
-                }
-            }
+
 
             &.hide {
                 opacity: 0;
@@ -377,12 +372,35 @@ body {
                         @include screenW(pda){
                             color: $black;
                         }
+
+                        span {
+                            display: inline;
+                            margin-left: 5px;
+                            font-size: .8em;
+                            letter-spacing: 0.025em;
+                        }
                     }
 
                     input:focus+label,
                     input.checked+label {
                         top: -50rem;
                         opacity: 0;
+                    }
+                    input:-webkit-autofill,
+                    input:-webkit-autofill:hover,
+                    input:-webkit-autofill:focus
+                    input:-webkit-autofill,
+                    textarea:-webkit-autofill,
+                    textarea:-webkit-autofill:hover
+                    textarea:-webkit-autofill:focus,
+                    select:-webkit-autofill,
+                    select:-webkit-autofill:hover,
+                    select:-webkit-autofill:focus {
+                    border: 0;
+                    -webkit-text-fill-color: #ссс;
+                    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+                    transition: background-color 5000s ease-in-out 0s;
+                    background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,174,255,0.04) 50%,rgba(255,255,255,0) 51%,rgba(0,174,255,0.03) 100%);
                     }
 
                 }
@@ -397,7 +415,7 @@ body {
             flex-flow: column;
             align-items: center;
             justify-content: center;
-            padding: 30rem 0;
+            padding: 26rem 0;
 
             @include screenW(pda){
                 display: block;
@@ -407,6 +425,87 @@ body {
 
                 .bg {
                     display: none;
+                }
+
+
+            }
+
+            #_id_introduction_mob {
+                display: none;
+                @include screenW(pda){
+                    position: relative;
+                    z-index: 1;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: stretch;
+                    justify-content: start;
+                    width: 100%;
+                    overflow: hidden;
+                    padding-top: 20px;
+
+                    @media (orientation: landscape){
+                        display: none;
+                    }
+
+                    .intro-slide {
+                        display: inline-flex;
+                        flex-flow: column;
+                        flex-shrink: 0;
+                        width: 100%;
+                        margin-left: 1px;
+
+                        &:first-child {
+                            margin-left: 0px;
+                        }
+
+                        .label {
+                            top: -20px;
+                        }
+                    }
+
+                    .notice {
+                        width: 100%;
+                        padding: 20rem 20rem 20rem 66rem;
+
+                        &:before {
+                            top: 20px;
+                            left: 14rem;
+                            bottom: auto;
+                            width: 40rem;
+                            height: 40rem;
+                        }
+
+                        &-title {
+                            margin-bottom: 7px;
+                            font-size: 13rem;
+                        }
+
+                        &-list {
+                            flex-flow: column;
+                            width: calc(100% + 50rem);
+                            margin-left: -50rem;
+                            .item {
+                                width: 100%;
+                                margin-bottom: 2px;
+                            }
+                        }
+                    }
+
+                }
+            }
+            #_id_introduction_desc {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+                padding-top: 3rem;
+                @include screenW(pda){
+                    display: none;
+                    @media (orientation: landscape){
+                        display: flex;
+                    }
                 }
             }
 
@@ -427,7 +526,7 @@ body {
                     top: -10rem;
                     left: 0;
                     right: 0;
-                    height: 105rem;
+                    height: 95rem;
                     transform: scale(-1);
 
                     background: url(../img/bitmap_btm_ornament.png) no-repeat 50% 0;
@@ -444,7 +543,7 @@ body {
                     bottom: -10rem;
                     left: 0;
                     right: 0;
-                    height: 105rem;
+                    height: 95rem;
                     background: url(../img/bitmap_btm_ornament.png) no-repeat 50% 0;
                     background-size: auto 100%;
 
@@ -457,8 +556,8 @@ body {
 
             .label {
                 position: absolute;
-                z-index: 5;
-                top: -18rem;
+                z-index: 10;
+                top: -44rem;
                 left: 0;
                 right: 0;
                 height: 36rem;
@@ -473,7 +572,7 @@ body {
                 border-radius: 18rem;
 
                 @include screenW(pda) {
-                    top: 0;
+                    // top: 0;
                     position: relative;
                     margin-bottom: 20rem;
                     height: 34rem;
@@ -486,14 +585,24 @@ body {
             .title {
                 position: relative;
                 z-index: 5;
-                padding: 20rem;
-                border-radius: 10rem;
+                padding: 14rem 20rem 10rem;
+                border-radius: 20rem;
                 background: $lightBlue;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font: 400 62rem/1 $pixelFont;
                 color: #fff;
+                margin-bottom: 0;
+
+                span {
+                    display: inline-block;
+                    margin: 0 14rem;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
 
                 @include screenW(pda){
                     font: 400 40rem/1 $pixelFont;
@@ -512,7 +621,7 @@ body {
                 font: 400 20rem/36rem $megaFont;
                 color: $black;
                 text-align: center;
-                margin-bottom: 30rem;
+                margin-bottom: 20rem;
                 background: $lightBlue;
 
                 @include screenW(pda){
@@ -529,7 +638,7 @@ body {
             .introduction {
                 position: relative;
                 z-index: 5;
-                width: 690rem;
+                width: 760rem;
                 display: flex;
                 align-items: stretch;
                 justify-content: space-between;
@@ -547,7 +656,7 @@ body {
 
                 &-item {
                     display: inline-flex;
-                    width: 340rem;
+                    width: 370rem;
                     flex-shrink: 0;
                     border: 3px dashed $blue;
                     border-radius: 20px;
@@ -591,24 +700,26 @@ body {
                         .lady {
                             position: relative;
                             display: inline-flex;
-                            width: 143rem;
+                            width: 128rem;
 
                             &:after {
                                 content: '';
                                 position: absolute;
                                 z-index: -1;
                                 bottom: -6rem;
-                                left: 15%;
+                                left: 30%;
                                 right: 0;
                                 width: 70%;
                                 margin: 0 auto;
-                                height: 20rem;
+                                height: 8rem;
                                 border-radius: 50%;
-                                background: #242520;
+                                background: #92715e;
                                 opacity: .5;
                                 mix-blend-mode: multiply;
                             }
                             img {
+                                position: relative;
+                                top: 14px;
                                 display: block;
                                 width: 100%;
                             }
@@ -634,6 +745,7 @@ body {
                             padding-bottom: 50rem;
                             font: 400 22rem/1 $pixelFont;
                             color: $peach;
+                            text-transform: uppercase;
                             text-shadow: 0 4rem 0 $blue;
                             margin: 0 10rem;
 
@@ -676,7 +788,7 @@ body {
 
                         .scoreboard {
                             position: absolute;
-                            top: 0;
+                            top: 10px;
                             right: 0;
                             display: flex;
                             flex-flow: column;
@@ -685,9 +797,14 @@ body {
                                 display: flex;
                                 flex-flow: row;
                                 align-items: center;
-                                font: 400 14rem/1 $pixelFont;
+                                font: 400 16rem/1 $pixelFont;
+                                text-shadow: 0 2px 0 $blue;
                                 color: $peach;
                                 margin-bottom: 5rem;
+
+                                &-cnt {
+                                    margin-left: 4rem;
+                                }
 
                                 &:before {
                                     content: '';
@@ -695,7 +812,7 @@ body {
                                     position: relative;
                                     padding-left: 20rem;
                                     height: 20rem;
-                                    margin-right: 8rem;
+                                    margin-right: 6rem;
                                     font: 400 14rem/20rem $pixelFont;
                                     color: $peach;
                                 }
@@ -728,9 +845,10 @@ body {
                             flex-flow: row nowrap;
                             align-items: center;
                             height: 50rem;
+                            justify-content: center;
 
                             .icon {
-                                margin-right: 10rem;
+                                // margin-right: 10rem;
                                 @include screenW(pda){
                                     margin-right: 0rem;
                                 }
@@ -791,9 +909,14 @@ body {
                     }
                 }
                 &-text {
-                    font: 400 14rem/21rem $megaFont;
+                    font: 400 13rem/15rem $megaFont;
                     color: $black;
-                    text-align: center;
+                    // display: flex;
+                    // align-items: center;
+                    // flex-flow: column;
+                    // align-items: start;
+                    display: block;
+                    margin-bottom: 10rem;
 
                     @include screenW(pda){
                         padding: 0 20rem;
@@ -813,7 +936,99 @@ body {
                         }
                     }
 
+                    .item {
+                        position: relative;
+                        display: inline-flex;
+                        flex-shrink: 0;
+                        margin: 0;
+
+                        &:before {
+                            content: '';
+                            position: relative;
+                            top: 5px;
+                            display: inline-block;
+                            width: 4px;
+                            height: 4px;
+                            border-radius: 50%;
+                            background: $black;
+                            margin-right: 5px;
+                            flex-shrink: 0;
+                        }
+                    }
+
                 }
+            }
+
+            .notice {
+                position: relative;
+                z-index: 5;
+                width: 760rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: $lightBlue;
+                margin: 16px auto 0;
+                border: 3px dashed $blue;
+                border-radius: 20px;
+                padding: 14rem 26rem 14rem 90rem;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 30rem;
+                    bottom: 0;
+                    width: 46rem;
+                    height: 46rem;
+                    background: url(../img/notice_pixel.png) no-repeat 50% 50%;
+                    background-size: contain;
+                    margin: auto;
+                }
+
+                &-textblock {
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    flex-flow: column;
+                }
+
+                &-title {
+                    position: relative;
+                    margin-bottom: 5px;
+                    font: 400 15rem/13rem $megaFont;
+                    color: $darkBlue;
+                }
+
+                &-list {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    flex-flow: row wrap;
+                    justify-content: space-around;
+                    font: 400 13rem/15rem $megaFont;
+                    color: $black;
+
+                    .item {
+                        position: relative;
+                        display: inline-flex;
+                        align-items: center;
+                        width: 49%;
+                        flex-shrink: 0;
+                        margin: 0;
+
+                        &:before {
+                            content: '';
+                            display: inline-block;
+                            width: 4px;
+                            height: 4px;
+                            border-radius: 50%;
+                            background: $black;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+
+
             }
 
             .startbtn {
