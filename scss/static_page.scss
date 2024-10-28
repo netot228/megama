@@ -2801,12 +2801,15 @@ body {
     }
 
     .b_static_page-content {
-        max-width: 640rem;
+        width: 710rem;
 
         position: relative;
         top: 40rem;
         opacity: 0;
         transition: all 0.6s $easeOutBack;
+        @include screenW(pda){
+            width: 100%;
+        }
 
         .title {
             margin-bottom: 60rem;
@@ -2840,6 +2843,10 @@ body {
             top: 100rem;
             opacity: 0;
             transition: all 0.8s $easeOutBack ;
+
+            @include screenW(pda){
+                margin-bottom: 40rem;
+            }
 
             &.show {
                 top: 0;
@@ -3011,9 +3018,57 @@ body {
                     }
 
                     &.m_special_7 {
+                        display: flex;
+                        align-items: start;
+                        justify-content: space-between;
+
+                        &.m_mob {
+                            display: none;
+                        }
+
+                        @include screenW(pda){
+
+                            margin-top: 0;
+
+                            &.m_mob {
+                                display: flex;
+                                flex-flow: row wrap;
+                            }
+                            &.m_desc {
+                                display: none;
+                            }
+                        }
+
+                        .img-product {
+                            width: 48%;
+                            display: inline-flex;
+                            justify-content: start;
+                            img {
+
+                            }
+                            @include screenW(pda){
+                                width: 50%;
+                                align-self: center;
+                            }
+                        }
+
+                        .img-phone {
+                            position: relative;
+                            width: 52%;
+                            display: inline-flex;
+                            justify-content: end;
+                            img {
+
+                            }
+
+                            @include screenW(pda){
+                                width: 46%;
+                            }
+                        }
+
                         .mark {
                             margin: 0;
-                            width: 49.4%;
+                            width: 48%;
                             position: absolute;
                             bottom: 0;
                             font-size: 16rem;
@@ -3027,6 +3082,7 @@ body {
                                 padding: 25rem 20rem;
                                 font: 500 20rem/1.5 $megaFont;
                                 color: $blue;
+                                flex-shrink: 0;
                             }
                         }
                     }

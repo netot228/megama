@@ -144,10 +144,10 @@ export function goLevel(level){
 
         let checkCanvasImageLoading = function(){
 
-            console.log(`allCanvasImagesSatus: ${allCanvasImagesSatus}`);
+            // console.log(`allCanvasImagesSatus: ${allCanvasImagesSatus}`);
             if(allCanvasImagesSatus>=100){
 
-                console.log('allCanvasImagesSatus loaded');
+                // console.log('allCanvasImagesSatus loaded');
                 cancelAnimationFrame(checkCanvasImageLoading);
 
                 drawObj();
@@ -278,7 +278,7 @@ export function goLevel(level){
 
                 lady.posYDyn = (lady.posY - (maxJumpSize*k));
 
-                console.log('jump change');
+                // console.log('jump change');
 
 
                 ladyAreaCtx.clearRect(0,0, ladyArea.width, ladyArea.height);
@@ -374,7 +374,7 @@ export function goLevel(level){
 
                 let y = lady.posYDyn - (lady.posYDyn - lady.posY)*k;
 
-                console.log(`lady.posYDyn: ${lady.posYDyn} - y: ${y}`);
+                // console.log(`lady.posYDyn: ${lady.posYDyn} - y: ${y}`);
 
                 // let y = lady.posYDyn + (lady.posY - lady.posYDyn)*k;
 
@@ -449,28 +449,16 @@ export function goLevel(level){
                     let fall    = fallImagesCollect[el.id];
                     let fallW   = isMobile ? Math.ceil(el.baseW*0.7) : el.baseW;
                     let fallH   = isMobile ? Math.ceil(el.baseH*0.7) : el.baseH;
-                    // let fallW   = isMobile ? 92 : 144;
-                    // let fallH;
-                    // if(isMobile){
-                    //     fallH = levelNum == 'level2' ? 92 : 70;
-                    // } else {
-                    //     fallH = levelNum == 'level2' ? 144 : 110;
-                    // }
                     let fallY   = canvasObjects.height - fallH - floorBottomPos + gap;
                     if(fall){
 
                         if(xPos<ladyRightCorn && fallY<ladyBottomCorn && ladyRightCorn < (xPos + fallW)){
                             if(!ladyFallDownFlag){
-                                console.log('falldown')
                                 fallDown();
                             }
                         }
 
                         objCtx.drawImage(fall, xPos, fallY, fallW, fallH);
-                        // objCtx.beginPath();
-                        // objCtx.fillStyle = 'red';
-                        // objCtx.rect(xPos, fallY, fallW, fallH); // Add a rectangle to the current path
-                        // objCtx.fill();
                     }
                 }
 
@@ -488,9 +476,9 @@ export function goLevel(level){
 
 
                     let bonus   = bonusImagesCollect[el.id];
-                    let bonusW  = isMobile ? 80 : 100;
-                    let bonusH  = isMobile ? 80 : 100;
-                    let bonusY  = isMobile ? 100 : 140;
+                    let bonusW  = isMobile ? 80 : 120;
+                    let bonusH  = isMobile ? 80 : 120;
+                    let bonusY  = isMobile ? 100 : 130;
 
                     if(xPos<ladyRightCorn && lady.posYDyn<bonusY && lady.styleLeft < (xPos + bonusW)){
 
@@ -628,7 +616,7 @@ export function goLevel(level){
             bgLeft = bgLeft + shift;
 
             if(finishline.getBoundingClientRect().left<lady.posX + (lady.width/2)) {
-                console.log('finish');
+                // console.log('finish');
                 clearMoving();
                 sendMessage('win');
             } else {
@@ -646,7 +634,6 @@ export function goLevel(level){
         let prevTime = 0;
         function moveAreaAndObj(time){
 
-            console.log(`timing :   ${time-prevTime}`);
             prevTime = time;
 
             drawObj();

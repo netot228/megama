@@ -110,9 +110,26 @@ body {
 }
 @media screen and (max-width: 1023px) {
   .b_level-scoreboard {
-    top: 40rem;
+    top: 20rem;
     left: 0;
     transform: scale(0.8);
+  }
+  .b_level-scoreboard .item {
+    margin-left: 40rem;
+    font: 400 16rem/1 "PressStart2P", sans-serif;
+  }
+  .b_level-scoreboard .item:before {
+    padding-left: 40rem;
+    height: 30rem;
+    font: 400 18rem/26rem "PressStart2P", sans-serif;
+  }
+  .b_level-scoreboard .item.m_lives:before {
+    background: url(../img/game/heart.svg) no-repeat 0 0;
+    background-size: auto 33rem;
+  }
+  .b_level-scoreboard .item.m_score:before {
+    background: url(../img/game/green_star.png) no-repeat 0 -2px;
+    background-size: auto 30rem;
   }
 }
 .b_level-area-finishline {

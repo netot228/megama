@@ -2510,11 +2510,16 @@ body .b_root .controller_r {
   transform: translateX(0) rotate(0deg);
 }
 .b_lifeHacks .b_static_page-content {
-  max-width: 640rem;
+  width: 710rem;
   position: relative;
   top: 40rem;
   opacity: 0;
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media screen and (max-width: 1023px) {
+  .b_lifeHacks .b_static_page-content {
+    width: 100%;
+  }
 }
 .b_lifeHacks .b_static_page-content .title {
   margin-bottom: 60rem;
@@ -2547,6 +2552,11 @@ body .b_root .controller_r {
   top: 100rem;
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media screen and (max-width: 1023px) {
+  .b_lifeHacks-article .block {
+    margin-bottom: 40rem;
+  }
 }
 .b_lifeHacks-article .block.show {
   top: 0;
@@ -2681,9 +2691,51 @@ body .b_root .controller_r {
   display: block;
   width: 100%;
 }
+.b_lifeHacks-article .block-text .img-wrapper.m_special_7 {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+.b_lifeHacks-article .block-text .img-wrapper.m_special_7.m_mob {
+  display: none;
+}
+@media screen and (max-width: 1023px) {
+  .b_lifeHacks-article .block-text .img-wrapper.m_special_7 {
+    margin-top: 0;
+  }
+  .b_lifeHacks-article .block-text .img-wrapper.m_special_7.m_mob {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .b_lifeHacks-article .block-text .img-wrapper.m_special_7.m_desc {
+    display: none;
+  }
+}
+.b_lifeHacks-article .block-text .img-wrapper.m_special_7 .img-product {
+  width: 48%;
+  display: inline-flex;
+  justify-content: start;
+}
+@media screen and (max-width: 1023px) {
+  .b_lifeHacks-article .block-text .img-wrapper.m_special_7 .img-product {
+    width: 50%;
+    align-self: center;
+  }
+}
+.b_lifeHacks-article .block-text .img-wrapper.m_special_7 .img-phone {
+  position: relative;
+  width: 52%;
+  display: inline-flex;
+  justify-content: end;
+}
+@media screen and (max-width: 1023px) {
+  .b_lifeHacks-article .block-text .img-wrapper.m_special_7 .img-phone {
+    width: 46%;
+  }
+}
 .b_lifeHacks-article .block-text .img-wrapper.m_special_7 .mark {
   margin: 0;
-  width: 49.4%;
+  width: 48%;
   position: absolute;
   bottom: 0;
   font-size: 16rem;
@@ -2698,6 +2750,7 @@ body .b_root .controller_r {
     padding: 25rem 20rem;
     font: 500 20rem/1.5 "MegaSans", sans-serif;
     color: #8654CC;
+    flex-shrink: 0;
   }
 }
 .b_lifeHacks-article .block-text .img-wrapper + .mark {

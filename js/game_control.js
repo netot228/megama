@@ -132,7 +132,7 @@ export function levelControl(level){
 
                     if(loadingStatus==100){
 
-                        console.log('loaded');
+                        // console.log('loaded');
 
                         curtainMain.classList.add('dn');
                         return resolve(true);
@@ -306,10 +306,13 @@ export function levelControl(level){
                 scoreRoot.innerText = localStorage.score;
 
                 _id_startNewGame.onclick = ()=>{
+
                     localStorage.score = 0;
                     localStorage.level = 1;
                     levelNum = 1;
                     localStorage.megaData = null;
+
+                    gameFrame.contentWindow.location.reload(true);
                     startTheGame();
                 }
                 _id_startLastGame.onclick = ()=>{
@@ -752,7 +755,7 @@ export function levelControl(level){
 
                                 navigator.clipboard.writeText(codePlace.dataset.code)
                                     .then(()=>{
-                                        console.log('promocode copied');
+                                        // console.log('promocode copied');
 
                                         let codeCopiedNotice = document.createElement('div');
                                         codeCopiedNotice.className = 'code-copiedNotice';
