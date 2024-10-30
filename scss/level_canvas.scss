@@ -68,29 +68,31 @@ body {
 
         @include screenW(pda){
             top: 20rem;
-            left: 0;
+            left: 30rem;
             transform: scale(0.8);
+            flex-flow: column;
+            align-items: start;
             .item {
-                margin-left: 40rem;
+                margin: 0 0 10px 0;
                 font: 400 16rem/1 $pixelFont;
 
                 &:before {
                     padding-left: 40rem;
-                    height: 30rem;
+                    height: 28rem;
                     font: 400 18rem/26rem $pixelFont;
                 }
 
                 &.m_lives {
                     &:before {
                         background: url(../img/game/heart.svg) no-repeat 0 0;
-                        background-size: auto 33rem;
+                        background-size: auto 28rem;
                     }
                 }
                 &.m_score {
                     &:before {
                         // background: url(../img/game/star.svg) no-repeat 0 0;
                         background: url(../img/game/green_star.png) no-repeat 0 -2px;
-                        background-size: auto 30rem;
+                        background-size: auto 28rem;
                     }
                 }
             }

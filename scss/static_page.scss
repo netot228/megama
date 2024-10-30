@@ -3048,7 +3048,6 @@ body {
                             }
                             @include screenW(pda){
                                 width: 50%;
-                                align-self: center;
                             }
                         }
 
@@ -3076,13 +3075,14 @@ body {
                             color: $black;
 
                             @include screenW(pda){
-                                margin: 25rem 0;
+                                margin: 25rem 0 0;
                                 width: 100%;
                                 position: relative;
-                                padding: 25rem 20rem;
-                                font: 500 20rem/1.5 $megaFont;
-                                color: $blue;
+                                padding: 0;
+                                font: 400 15rem / 20rem "MegaSans", sans-serif;
                                 flex-shrink: 0;
+                                color: #292929;
+                                background: transparent;
                             }
                         }
                     }
